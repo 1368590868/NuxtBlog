@@ -1,0 +1,2 @@
+# NuxtBlog
+SSR Blog
