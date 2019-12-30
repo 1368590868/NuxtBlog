@@ -30,7 +30,11 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/antd-ui'
+    '@/plugins/antd-ui',
+    {
+      src: "~plugins/vue-particles",
+      ssr: false
+    },
   ],
   /*
   ** Nuxt.js dev-modules
