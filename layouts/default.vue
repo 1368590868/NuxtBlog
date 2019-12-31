@@ -51,7 +51,7 @@
 .header-bg{
     width: 100%;
     height: 75px;
-    background-image: url('http://vue.iranlin.xyz/header.jpg');
+    background-image: url('http://vue.iranlin.xyz/header.jpg') ;
     img{
       max-width: 74px;
       margin-left: 50px;
@@ -66,6 +66,7 @@
    left:0;
     #particles-js{
       background-image: url('http://vue.iranlin.xyz/bg.jpg');
+      background-repeat: no-repeat;
       height: 100vh;
     }
   }

@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <a-menu v-model="menu" mode="horizontal">
+    <!-- 手机端菜单按钮 -->
+    <i class="icon menu-btn" @click="OpenMenu">&#xe65d;</i>
+    <a-menu v-model="menu" :mode="menuType"  :inlineCollapsed='isOpen' v-if="menuOpen">
       <a-menu-item key="home"> <a-icon type="home" />首页 </a-menu-item>
       <a-sub-menu>
         <span slot="title" class="submenu-title-wrapper"
@@ -29,14 +31,49 @@
   export default {
     data() {
       return {
-        current: ['home'],
+        menu:['home'],
+        // 菜单打开与否
+        isOpen:false,
+        menuOpen: false,
+        // 菜单类型
+        menuType:'inline',
+        // 浏览器宽度
+        screenWidth:''
       };
     },
+    methods:{
+      OpenMenu(){
+        this.menuOpen = !this.menuOpen
+      }
+    },
+    mounted(){
+      // 监听浏览器宽度
+      this.screenWidth = document.body.clientWidth;
+       window.onresize = () => {
+        return (() => {
+          this.screenWidth = document.body.clientWidth;
+          this.screenHeight = document.body.clientHeight;
+        })();
+      };
+    }
   };
 </script>
 
 <style lang="less" scoped>
   .home{
     margin-top: 75px;
+    .menu-btn{
+      display: block;
+      cursor: pointer;
+      color: blue;
+      position: relative;
+      z-index: 99;
+    }
+  }
+  @media screen and(min-width: 720px){
+    .home{
+    .menu-btn{
+      display: none;
+    }}
   }
 </style>
