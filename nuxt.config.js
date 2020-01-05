@@ -8,6 +8,7 @@ module.exports = {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
+      { name: 'keywords', content: '冉林的博客,冉林的小站,冉林,木木的小站' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
@@ -24,6 +25,7 @@ module.exports = {
   */
   css: [
     'ant-design-vue/dist/antd.css',
+    'assets/css/animate.min.css',
     'assets/css/index.less'
   ],
   /*

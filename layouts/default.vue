@@ -8,9 +8,10 @@
     <template slot="title">
       谢谢你来看我！
     </template>
-    <img src="../assets/img/logo.png" alt="Logo">
+    <img class="animated bounce" src="../assets/img/logo.png" alt="Logo">
   </a-tooltip>
-        
+        <!-- 头部菜单 -->
+        <AllHeader class="animated bounceInRight"/>
       </div>
     </header>
     <!-- 全局背景图片粒子效果 -->
@@ -25,13 +26,13 @@
           linesColor="#dedede"
           :linesWidth="1"
           :lineLinked="true"
-          :lineOpacity="0.4"
-          :linesDistance="150"
+          :lineOpacity=".7"
+          :linesDistance="50"
           :moveSpeed="3"
           :hoverEffect="true"
           hoverMode="grab"
           :clickEffect="true"
-          clickMode="push"
+          clickMode="repulse"
         ></vue-particles>
       </no-ssr>
     </div>
@@ -39,10 +40,19 @@
     <nuxt />
   </div>
 </template>
+<script>
+import AllHeader from '../components/Header'
+export default {
+  components:{
+    AllHeader
+  }
+}
+</script>
 
 <style lang='less' scoped>
 
 #app {
+  
   .header-wrap{
     width: 100%;
     position: fixed;
@@ -52,9 +62,12 @@
     width: 100%;
     height: 75px;
     background-image: url('http://vue.iranlin.xyz/header.jpg') ;
+    background-size: cover;
+    background-repeat: no-repeat;
     img{
       max-width: 74px;
       margin-left: 50px;
+      transition: rotate(-90edg)
     }
   }
   }
@@ -65,10 +78,10 @@
    top:75px;
    left:0;
     #particles-js{
-      background-image: url('http://vue.iranlin.xyz/bg.jpg');
-      background-repeat: no-repeat;
-      height: 100vh;
+     
+      height: 2000px;
     }
   }
 }
+
 </style>
