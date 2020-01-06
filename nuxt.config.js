@@ -26,7 +26,8 @@ module.exports = {
   css: [
     'ant-design-vue/dist/antd.css',
     'assets/css/animate.min.css',
-    'assets/css/index.less'
+    'assets/css/index.less',
+    'vant/lib/index.css'
   ],
   /*
   ** Plugins to load before mounting the App

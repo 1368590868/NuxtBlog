@@ -2,13 +2,23 @@
   <div class="home">
    <!-- 文章轮播图 -->
    <AritcleCarousel />
-   <aritcle :aritcle='this.aritcle'></aritcle>
+   <!-- title -->
+   <v-title></v-title>
+   <!-- 文章信息 -->
+   <div class="index">
+  <aritcle :aritcle='this.aritcle'></aritcle>
+   <!-- 个人信息 -->
+   <personal-info></personal-info>
+   </div>
+   
   </div>
 </template>
 
 <script>
 import AritcleCarousel from '../components/aritcleCarousel';
 import aritcle from '../components/aritcle';
+import PersonalInfo from '../components/personalInfo'
+import VTitle from '../components/vTitle';
  if (process.browser) { // 在这里根据环境引入wow.js
             var {WOW} = require('wowjs')
         }
@@ -16,7 +26,9 @@ export default {
   name:'index',
   components:{
     AritcleCarousel,
-    aritcle
+    aritcle,
+    PersonalInfo,
+    VTitle
   },
   mounted(){
      if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
@@ -48,6 +60,10 @@ export default {
     margin:0 auto;
     position: relative;
     z-index: 99;
+    .index{
+      display: flex;
+      flex-flow: row wrap;
+    }
   }
   @media screen and(max-width:720px){
     .home{

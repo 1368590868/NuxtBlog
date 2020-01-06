@@ -1,11 +1,9 @@
 <template>
 <div class="aritcle-caro">
     <!-- 手机端轮播图 -->
-<a-carousel  :autoplay='true'>
-    <div><h3>1</h3></div>
-    <div><h3>2</h3></div>
-    <div><h3>3</h3></div>
-    <div><h3>4</h3></div>
+    <a-carousel  :autoplay='true'>
+      <img src="https://yezipi.net/api/static/upload/article_cover/origin_1575977988780.jpg" >
+     <img src="https://yezipi.net/api/static/upload/article_cover/origin_1569567334552.jpg" >
   </a-carousel>
 </div>
   
@@ -20,10 +18,7 @@
 <style scoped>
       /* For demo */
   .ant-carousel >>> .slick-slide {
-    text-align: center;
     height: 200px;
-    line-height: 200px;
-    background: #758bb3;
     overflow: hidden;
   }
 
@@ -32,9 +27,6 @@
   }
 </style>
 <style lang='less'  scoped>
-
-
-
     .aritcle-caro{
         width: 100%;
         position: relative;
@@ -50,6 +42,17 @@
         background-size: 100% 100%;
         z-index: 0;
     }
+      
+        .heade{
+          position: absolute;
+          right: 20px;
+          top:0;
+          width: 50px;
+          height: 100px;
+          background-color: blue;
+       }
+      
+      
     }
     
 
@@ -57,7 +60,7 @@
 
   @media screen and(min-width: 720px){
          .aritcle-caro{
-             width: 30%;
+            width:100%;
     }
   }
 </style>
