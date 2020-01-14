@@ -6,9 +6,9 @@
          <img src="http://vue.iranlin.xyz/header.PNG" height="80px">
          <p class="name">帅哥林</p>
          <p class="desc">高级前端CV(复制粘贴)工程师</p>
-         <p class="animated bounce webzan">
-             <i class="icon zan" v-if="isZan" @click="webZan">&#xe6de;</i>
-             <i class="icon zan" v-else @click="aginZan">&#xe603;</i>
+         <p class="wow bounce webzan" data-wow-offset="150" data-wow-iteration='99' >
+             <!-- <i class="icon zan" v-if="isZan" @click="webZan">&#xe6de;</i> -->
+             <i class="icon zan"  @click="aginZan">&#xe603;</i>
         </p>
         <p class="btn">
              <span class="feedback">
@@ -24,24 +24,24 @@ import {Toast} from 'vant'
 export default {
     data(){
         return{
-            isZan: ''
+            // isZan: ''
         }
     },
     mounted(){
-        this.isZan = window.localStorage.isZan
+        // this.isZan = window.localStorage.isZan
     },
     methods:{
         /**
          * 点赞
          */
-        webZan(){
-            this.isZan = window.localStorage.webzan
-            window.localStorage.setItem("isZan",true)
-                Toast({
-                    message: '谢谢你喜欢我!',
-                    icon: 'like-o'
-                });
-        },
+        // webZan(){
+        //     this.isZan = window.localStorage.webzan
+        //     window.localStorage.setItem("isZan",true)
+        //         Toast({
+        //             message: '谢谢你喜欢我!',
+        //             icon: 'like-o'
+        //         });
+        // },
         /**
          * 再次点赞
          */
@@ -89,6 +89,7 @@ export default {
            }
            .desc{
                color:black;
+               margin-bottom: 20px;
            }
            .zan{
                font-size: 32px;
