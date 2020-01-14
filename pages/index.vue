@@ -7,9 +7,8 @@
    <!-- 文章信息 -->
    <div class="index">
   <aritcle :aritcle='this.aritcle'></aritcle>
-  <div class="more"><nuxt-link to="/article"> <a-button type="dashed" icon="search">查看全部</a-button></nuxt-link></div>
   <!-- 个人信息title -->
-  <v-title :initTitle='initTitle'></v-title>
+  <v-title class="per-info-title" :initTitle='initTitle'></v-title>
    <!-- 个人信息 -->
    <personal-info></personal-info>
    </div>
@@ -77,14 +76,20 @@ export default {
     .index{
       display: flex;
       flex-flow: row wrap;
+      .per-info-title{
+        display: none;
+      }
     }
-    .more{
-      margin: 20px auto;
-    }
+   
   }
   @media screen and(max-width:720px){
     .home{
       width:100%;
+      .index{
+        .per-info-title{
+          display: block;
+        }
+      }
     }
   }
 </style>

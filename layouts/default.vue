@@ -4,10 +4,8 @@
     <header  class="header-wrap">
       <div class="header-bg">
         <!-- 小熊猫的提示 -->
-         <a-tooltip>
-    <template slot="title">
-      谢谢你来看我！
-    </template>
+         <a-tooltip title="谢谢你来看我！" :getPopupContainer="getPopupContainer"> 
+   
     <img class="wow zoomIn" src="../assets/img/logo.png" alt="Logo" data-wow-iteration='3'>
   </a-tooltip>
         <!-- 头部菜单 -->
@@ -38,7 +36,7 @@
     </div>
 
     <nuxt />
-    <footer><a href="http://www.beian.miit.gov.cn" target='_blank'>渝ICP备19017809号</a></footer>
+    <footer>备案号:<a href="http://www.beian.miit.gov.cn" target='_blank'>渝ICP备19017809号</a></footer>
   </div>
 </template>
 <script>
@@ -46,6 +44,14 @@ import AllHeader from '../components/Header'
 export default {
   components:{
     AllHeader
+  },
+  methods:{
+    /**
+     * 让熊猫提示信息被遮挡能自动出来
+     */
+     getPopupContainer(trigger) {
+        return trigger.parentElement;
+      },
   }
 }
 </script>
@@ -84,9 +90,14 @@ export default {
     }
   }
   footer{
-    width: 200px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
     margin: 50px auto;
-    font-size: 18px;
+    font-size: 16px;
     position: relative;
     z-index: 99;
   }

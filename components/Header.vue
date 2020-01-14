@@ -21,9 +21,11 @@
         </a-menu-item-group>
       </a-sub-menu>
       <a-menu-item key="photo">
+        <nuxt-link to="/photo">
         <a-icon type="picture" />相册
+        </nuxt-link>
       </a-menu-item>
-      <a-menu-item key="feedback"><a-icon type="link" />留言 </a-menu-item>
+      <a-menu-item key="feedback"><nuxt-link to="/comment"><a-icon type="link" />留言 </nuxt-link></a-menu-item>
       <a-menu-item key="outLink"><a-icon type="link" />友链 </a-menu-item>
     </a-menu>
     <!-- 手机菜单 -->
@@ -44,10 +46,10 @@
           <a-menu-item key="6">更多Nuxt相关...</a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
-      <a-menu-item key="photo">
+      <a-menu-item key="photo" @click="go('photo')">
         <a-icon type="picture" />相册
       </a-menu-item>
-      <a-menu-item key="feedback"><a-icon type="solution" /> 留言</a-menu-item>
+      <a-menu-item key="feedback" @click="go('comment')"><a-icon type="solution" /> 留言</a-menu-item>
       <a-menu-item key="outLink"><a-icon type="link" />友链 </a-menu-item>
     </a-menu>
   </div>
@@ -65,7 +67,17 @@
     methods:{
       OpenMenu(){
         this.isOpen = !this.isOpen
+      },
+     /**
+      * 手机菜单跳转路由
+      */
+      go(type){
+        switch(type){
+          case 'photo' : this.$router.push('/photo') ;this.isOpen = false ; break;
+          case 'comment' : this.$router.push('/comment'); this.isOpen = false ; break;
+        }
       }
+      
     }
       
   };

@@ -23,6 +23,7 @@
               
           </div>
       </section>
+  <div class="more"><nuxt-link to="/article"> <a-button type="dashed" icon="search">查看全部</a-button></nuxt-link></div>
   </div>
 </template>
 
@@ -63,6 +64,12 @@ export default {
     .aritcle-wrap{
         width:100%;
         padding: 0 20px;
+         .more{
+             display: flex;
+             justify-content: center;
+             margin-top: 20px;
+             margin-bottom: 10px;
+         }
         .aritcle{
             width: 100%;
             height: 100px;

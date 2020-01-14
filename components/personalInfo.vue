@@ -6,25 +6,72 @@
          <img src="http://vue.iranlin.xyz/header.PNG" height="80px">
          <p class="name">帅哥林</p>
          <p class="desc">高级前端CV(复制粘贴)工程师</p>
+         <p class="github">
+             <i class="icon">&#xe64a;</i>&nbsp;<a href="https://github.com/1368590868" target="_blank">https://github.com/1368590868</a>
+         </p>
+         <p class="wechat">
+             <i class="icon qq">&#xe82e;</i><span>1368590868</span>
+             <i class="icon wechat">&#xe614;</i><span>&nbsp;ranlin_520</span>
+         </p>
          <p class="wow bounce webzan" data-wow-offset="150" data-wow-iteration='99' >
              <!-- <i class="icon zan" v-if="isZan" @click="webZan">&#xe6de;</i> -->
              <i class="icon zan"  @click="aginZan">&#xe603;</i>
         </p>
         <p class="btn">
-             <span class="feedback">
-                  <i class="icon ">&#xe61a;</i>留言数：45
-             </span>
+            <i class="icon ">&#xe61a;</i>
+            <span>&nbsp;留言数：45</span>
         </p>
+      </div>
+      <!-- 最新评论 -->
+      <div class="comment">
+           <a-list
+    class="comment-list"
+    :header="`${data.length} replies`"
+    itemLayout="horizontal"
+    :dataSource="data"
+  >
+    <a-list-item slot="renderItem" slot-scope="item">
+      <a-comment :author="item.author" :avatar="item.avatar">
+        <template slot="actions">
+          <span v-for="(action,i) in item.actions" :key="i">{{action}}</span>
+        </template>
+        <p slot="content">{{item.content}}</p>
+        <a-tooltip slot="datetime" :title="item.datetime.format('YYYY-MM-DD HH:mm:ss')">
+          <span>{{item.datetime.fromNow()}}</span>
+        </a-tooltip>
+      </a-comment>
+    </a-list-item>
+  </a-list>
       </div>
   </div>
 </template>
 
 <script>
 import {Toast} from 'vant'
+import moment from 'moment'
 export default {
     data(){
         return{
-            // isZan: ''
+            // new comment source
+            data: [
+          {
+            actions: ['Reply to'],
+            author: 'Han Solo',
+            avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+            content:
+              'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+            datetime: moment().subtract(1, 'days'),
+          },
+          {
+            actions: ['Reply to'],
+            author: 'Han Solo',
+            avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+            content:
+              'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+            datetime: moment().subtract(2, 'days'),
+          },
+        ],
+        moment,
         }
     },
     mounted(){
@@ -86,10 +133,26 @@ export default {
                color:#4240d8;
                font-size: 16px;
                margin-top: 10px;
+               margin-bottom: 10px;
            }
-           .desc{
+           .desc,.wechat,.github{
                color:black;
+           }
+           .wechat{
                margin-bottom: 20px;
+           }
+           .github{
+              a{
+                  color:black;
+                  &:hover{
+                      color: #84f19b;
+                  }
+              }
+           }
+           .btn{
+               display: flex;
+               justify-content: center;
+               align-items: center;
            }
            .zan{
                font-size: 32px;
