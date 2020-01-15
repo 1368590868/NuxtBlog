@@ -1,18 +1,25 @@
 <template>
 <div class="aritcle-caro">
     <!-- 手机端轮播图 -->
-    <a-carousel  :autoplay='true'>
-      <img src="https://yezipi.net/api/static/upload/article_cover/origin_1575977988780.jpg" >
-     <img src="https://yezipi.net/api/static/upload/article_cover/origin_1569567334552.jpg" >
-  </a-carousel>
+    <van-swipe :autoplay="3000">
+  <van-swipe-item v-for="(image, index) in imgList" :key="index">
+    <van-image width="100%" height="400" fit="cover" :src="image" />
+  </van-swipe-item>
+</van-swipe>
 </div>
   
 </template>
 <script>
   export default {
-    methods: {
-      
-    },
+   data(){
+     return{
+       imgList: ['https://yezipi.net/api/static/upload/article_cover/origin_1575977988780.jpg',
+                  'https://yezipi.net/api/static/upload/article_cover/origin_1569567334552.jpg',
+                  'http://vue.iranlin.xyz/xmj1.jpg',
+                  'http://vue.iranlin.xyz/xmj2.jpg'
+       ]
+     }
+   }
   };
 </script>
 <style scoped>
@@ -30,7 +37,7 @@
     .aritcle-caro{
         width: 100%;
         position: relative;
-        .ant-carousel::after{
+        &::after{
         content:'';
         display: block;
         position: absolute;
@@ -39,7 +46,6 @@
         width: 100%;
         height: 30%;
         background:url('../assets/img/ice.png') repeat-x;
-        background-size: 100% 100%;
         z-index: 0;
     }
       

@@ -1,5 +1,6 @@
 <template>
   <div class="comment">
+    <v-title :initTitle='initTitle'></v-title>
     <a-list
       v-if="comments.length"
       :dataSource="comments"
@@ -38,16 +39,27 @@
 </template>
 <script>
   import moment from 'moment';
+  import VTitle from '../../components/vTitle'
 //   随机头像颜色文字
   const UserList = ['U', 'Lucy', 'Tom', 'Edward'];
   const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
   export default {
+    components:{
+      VTitle
+    },
     data() {
       return {
         comments: [],
         submitting: false,
         value: '',
         moment,
+        // 标题
+         initTitle:{
+          mode: 'black', // 两种颜色  [red | black ]
+          cnTitle: '嘴下留情', // 标题
+          enTitle: 'Why Look Me Photo', // 英文标题
+          icon: '&#xe61e;' // iconfont
+        },
         // 随机头像
         avatarValue: UserList[0],
         color: colorList[0],

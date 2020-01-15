@@ -3,6 +3,8 @@
     <!-- 头部 -->
     <header  class="header-wrap">
       <div class="header-bg">
+        <!-- 返回按钮 -->
+      <a-icon class="back" @click="goback" type="left" />
         <!-- 小熊猫的提示 -->
          <a-tooltip title="谢谢你来看我！" :getPopupContainer="getPopupContainer"> 
    
@@ -37,9 +39,12 @@
 
     <nuxt />
     <footer>备案号:<a href="http://www.beian.miit.gov.cn" target='_blank'>渝ICP备19017809号</a></footer>
+    <!-- 回到头部 -->
+     <a-back-top style="z-index:999"/>
   </div>
 </template>
 <script>
+import {Toast} from 'vant'
 import AllHeader from '../components/Header'
 export default {
   components:{
@@ -52,6 +57,17 @@ export default {
      getPopupContainer(trigger) {
         return trigger.parentElement;
       },
+      /**
+       * 返回上级菜单
+       */
+      goback(){
+        let str = location.href.length
+        str > 22 ?
+        this.$router.go(-1) : Toast({
+  message: '已经再首页咯',
+  icon: 'like-o'
+});
+      }
   }
 }
 </script>
@@ -71,6 +87,9 @@ export default {
     background-image: url('http://vue.iranlin.xyz/header.jpg') ;
     background-size: cover;
     background-repeat: no-repeat;
+    .back{
+      display: none;
+    }
     img{
       max-width: 74px;
       margin-left: 50px;
@@ -102,5 +121,20 @@ export default {
     z-index: 99;
   }
 }
-
+@media screen and(max-width:720px){
+  #app{
+    .header-wrap{
+      .header-bg{
+        .back{
+          display: inline-block;
+          font-size: 32px;
+        }
+        img{
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  
+}
 </style>

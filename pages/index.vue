@@ -38,7 +38,7 @@ export default {
       mode: 'black', // 两种颜色  [red | black ]
           cnTitle: '妹子加微信', // 标题
           enTitle: 'this is life aritcle', // 英文标题
-          icon: '&#xe63e;' // iconfont
+          icon: '&#xe634;' // iconfont
     }
     }
    

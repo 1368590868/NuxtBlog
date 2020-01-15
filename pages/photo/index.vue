@@ -1,41 +1,122 @@
 <template>
   <div class="photo">
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <span @click="open">相册查看</span>
+    <v-title :initTitle="initTitle"></v-title>
+    <ul class="content">
+      <li>
+        <van-image
+          width="100%"
+          fit="scale-down"
+          height="100%"
+          @click="open(2)"
+          :lazy-load="true"
+          src="http://vue.iranlin.xyz/header.PNG"
+        >
+          <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
+        </van-image>
+      </li>
+      <li>
+        <van-image
+          width="100%"
+          fit="scale-down"
+          height="100%"
+          @click="open(2)"
+          :lazy-load="true"
+          src="http://vue.iranlin.xyz/xmj1.jpg"
+        >
+          <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
+        </van-image>
+      </li>
+      <li>
+        <van-image
+          width="100%"
+          fit="scale-down"
+          height="100%"
+          @click="open(2)"
+          :lazy-load="true"
+          src="http://img3.imgtn.bdimg.com/it/u=1023281353,3173368292&fm=26&gp=0.jpg"
+        >
+          <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
+        </van-image>
+      </li>
+      <li>
+        <van-image
+          width="100%"
+          fit="scale-down"
+          height="100%"
+          @click="open(2)"
+          :lazy-load="true"
+          src="http://vue.iranlin.xyz/xmj2.jpg"
+        >
+          <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
+        </van-image>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import {ImagePreview} from 'vant'
+import { ImagePreview } from 'vant'
+import VTitle from '../../components/vTitle'
 export default {
-    data(){
-        return{
-           
-        }
-    },
-    methods:{
-        open(){
-            ImagePreview({
-  images: [
-      'https://yezipi.net/_nuxt/img/f2b8ac8.jpg',
-      'https://yezipi.net/api/static/upload/article_cover/thumb_1569567334552.jpg'
-  ],
-  startPosition: 1,
-  lazyLoad: true,
-});
-        }
+  components: {
+    VTitle
+  },
+  data () {
+    return {
+      initTitle: {
+        mode: 'black', // 两种颜色  [red | black ]
+        cnTitle: '私密照片', // 标题
+        enTitle: 'Why Look Me Photo', // 英文标题
+        icon: '&#xe625;' // iconfont
+      }
     }
+  },
+  methods: {
+    open (i) {
+      ImagePreview({
+        images: [
+          'https://yezipi.net/_nuxt/img/f2b8ac8.jpg',
+          'https://yezipi.net/api/static/upload/article_cover/thumb_1569567334552.jpg',
+          'http://img3.imgtn.bdimg.com/it/u=1023281353,3173368292&fm=26&gp=0.jpg',
+          'http://vue.iranlin.xyz/xmj1.jpg',
+          'http://vue.iranlin.xyz/xmj2.jpg',
+          'http://m.qpic.cn/psb?/V108pDzz1skqBn/xda4wMSbrhKIYcSq6r2v*5cbNaN6EZINPBwYitkUBfg!/b/dDcBAAAAAAAA&bo=AAXQAgAAAAARF*c!&rf=viewer_4'
+        ],
+        startPosition: i,
+        lazyLoad: true,
+      });
+    }
+  }
 }
 </script>
 
 <style lang='less' scoped>
+.photo {
+  position: relative;
+  z-index: 99;
+  padding-top: 75px;
+  .content{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+      li{
+          width: 20%;   
+          &:hover{
+              transform: scale(1.2);
+              box-shadow: 0px 0px 15px 9px rgba(0, 0, 0, 0.43);
+          }
+      }
+  }
+}
+@media screen and(max-width: 720px){
     .photo{
-        position: relative;
-        z-index: 99;
+        .content{
+            flex-flow: row wrap;
+            li{
+                width: 40%;
+                margin-top: 20px;
+            }
+        }
     }
-
+}
 </style>
