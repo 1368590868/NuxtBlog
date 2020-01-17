@@ -3,7 +3,7 @@
     <!-- 手机端轮播图 -->
     <van-swipe :autoplay="3000">
   <van-swipe-item v-for="(image, index) in imgList" :key="index">
-    <van-image width="100%" height="400" fit="cover" :src="image" />
+    <van-image width="100%" class="swipe-img" fit="cover" :src="image" />
   </van-swipe-item>
 </van-swipe>
 </div>
@@ -22,17 +22,6 @@
    }
   };
 </script>
-<style scoped>
-      /* For demo */
-  .ant-carousel >>> .slick-slide {
-    height: 200px;
-    overflow: hidden;
-  }
-
-  .ant-carousel >>> .slick-slide h3 {
-    color: #fff;
-  }
-</style>
 <style lang='less'  scoped>
     .aritcle-caro{
         width: 100%;
@@ -58,7 +47,9 @@
           background-color: blue;
        }
       
-      
+      .swipe-img{
+        height: 30vh;
+      }
     }
     
 
@@ -67,6 +58,9 @@
   @media screen and(min-width: 720px){
          .aritcle-caro{
             width:100%;
+            .swipe-img{
+              height: 300px;
+            }
     }
   }
 </style>

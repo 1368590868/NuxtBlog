@@ -61,8 +61,9 @@ export default {
        * 返回上级菜单
        */
       goback(){
+        // 获取浏览器的长度判断是否到首页
         let str = location.href.length
-        str > 22 ?
+        str > 9 ?
         this.$router.go(-1) : Toast({
   message: '已经再首页咯',
   icon: 'like-o'

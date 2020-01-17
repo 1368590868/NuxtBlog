@@ -1,8 +1,16 @@
 const Koa = require('koa')
 const consola = require('consola')
+const {connect} = require('./dbs/init.js')
 const { Nuxt, Builder } = require('nuxt')
+const bodyParser = require('koa-bodyparser')
+// const Router = require('koa-router');
+
+// 引入数据库操作文件
+const imgRouter = require('./interface/img')
+
 
 const app = new Koa()
+// const router = new Router();
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -17,6 +25,7 @@ async function start () {
     port = process.env.PORT || 3000
   } = nuxt.options.server
 
+
   // Build in development
   if (config.dev) {
     const builder = new Builder(nuxt)
@@ -24,7 +33,17 @@ async function start () {
   } else {
     await nuxt.ready()
   }
+  // 连接mongodb
+  connect()
+  app.use(bodyParser());
+  // 使用路由
+  app
+    .use(imgRouter.routes())
+    .use(imgRouter.allowedMethods());
+  
 
+
+  
   app.use((ctx) => {
     ctx.status = 200
     ctx.respond = false // Bypass Koa's built-in response handling

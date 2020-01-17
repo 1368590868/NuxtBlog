@@ -5,7 +5,7 @@
       <li>
         <van-image
           width="100%"
-          fit="scale-down"
+          fit="cover"
           height="100%"
           @click="open(2)"
           :lazy-load="true"
@@ -17,7 +17,7 @@
       <li>
         <van-image
           width="100%"
-          fit="scale-down"
+          fit="cover"
           height="100%"
           @click="open(2)"
           :lazy-load="true"
@@ -42,6 +42,42 @@
         <van-image
           width="100%"
           fit="scale-down"
+          height="100%"
+          @click="open(2)"
+          :lazy-load="true"
+          src="http://vue.iranlin.xyz/xmj2.jpg"
+        >
+          <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
+        </van-image>
+      </li>
+      <li>
+        <van-image
+          width="100%"
+          fit="scale-down"
+          height="100%"
+          @click="open(2)"
+          :lazy-load="true"
+          src="http://vue.iranlin.xyz/xmj2.jpg"
+        >
+          <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
+        </van-image>
+      </li>
+      <li>
+        <van-image
+          width="100%"
+          fit="scale-down"
+          height="100%"
+          @click="open(2)"
+          :lazy-load="true"
+          src="http://vue.iranlin.xyz/xmj2.jpg"
+        >
+          <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
+        </van-image>
+      </li>
+      <li>
+        <van-image
+          width="100%"
+          fit="cover"
           height="100%"
           @click="open(2)"
           :lazy-load="true"
@@ -76,6 +112,7 @@ export default {
       ImagePreview({
         images: [
           'https://yezipi.net/_nuxt/img/f2b8ac8.jpg',
+          'http://vue.iranlin.xyz/header.PNG',
           'https://yezipi.net/api/static/upload/article_cover/thumb_1569567334552.jpg',
           'http://img3.imgtn.bdimg.com/it/u=1023281353,3173368292&fm=26&gp=0.jpg',
           'http://vue.iranlin.xyz/xmj1.jpg',
@@ -95,12 +132,16 @@ export default {
   position: relative;
   z-index: 99;
   padding-top: 75px;
+  width: 100%;
   .content{
       display: flex;
       flex-flow: row wrap;
-      justify-content: space-evenly;
+      width: 100%;
+      padding-left: 20px;
       li{
-          width: 20%;   
+          width: 20%;
+          max-height: 280px;
+          margin: 10px 10px;
           &:hover{
               transform: scale(1.2);
               box-shadow: 0px 0px 15px 9px rgba(0, 0, 0, 0.43);
@@ -111,10 +152,10 @@ export default {
 @media screen and(max-width: 720px){
     .photo{
         .content{
-            flex-flow: row wrap;
             li{
-                width: 40%;
-                margin-top: 20px;
+              max-height: 100px;
+              width: 30%;
+              margin: 5px;
             }
         }
     }
