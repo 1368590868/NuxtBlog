@@ -23,6 +23,7 @@ export default {
     }
     }
   },
+  // seo
   head(){
     return{
       title:'文章首页'

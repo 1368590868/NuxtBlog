@@ -38,6 +38,10 @@ module.exports = {
       src: "~plugins/vue-particles",
       ssr: false
     },
+    {
+      src: '@/plugins/vue-mavon-editor',
+      srr: false
+    }
   ],
   /*
   ** Nuxt.js dev-modules
