@@ -1,16 +1,35 @@
 <template>
   <div class="mavonEditor">
+    <!-- 全屏loading -->
+    <a-spin tip='加油，每天写一篇' :spinning="loading">
+      <!-- title -->
+      <a-input placeholder="文章标题" v-model="article.title"/>
+      <!-- 文章类别 --> 
+      <a-select defaultValue="life" style="width: 120px;margin-bottom:100px;" @change="contentType">
+      <a-select-option value="life">生活文章</a-select-option>
+      <a-select-option value="jishu">技术文章</a-select-option>
+      </a-select>
+      <!-- 文章内容 -->
     <client-only>
       <mavon-editor ref=md @imgAdd="$imgAdd"  codeStyle="tomorrow-night" @change="markChange" :toolbars="markdownOption" v-model="handbook"/>
     </client-only>
   <div v-html="article.body"></div>
+  <!-- 发表文章 -->
+  <a-button type="dashed" ghost @click="submit(article)">发表文章</a-button>
+    </a-spin>
   </div>
 </template>
 <script>
+import {Toast} from 'vant'
 import axios from 'axios';
 export default {
+  layout(context){
+    return 'admin'
+  },
   data() {
     return {
+      loading : false,
+      // 富文本配置项
       markdownOption: {
         bold: true, // 粗体
         htmlcode: true,
@@ -22,7 +41,9 @@ export default {
       },
     //   文章配置
     article:{
-        body:''
+        body:'',
+        title:'',
+        Type: 'life'
     },
       handbook: "#### how to use mavonEditor in nuxt.js"
     };
@@ -51,10 +72,41 @@ export default {
                // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
                // $vm.$img2Url 详情见本页末尾
                let url = `http://cdn.irlin.cn/${res.data.data.key}`
-               console.log(res.data.data.key);
                this.$refs.md.$img2Url(pos, url) ;
            }).catch(error => {console.log(error);})
-
+      },
+      /**
+       * 发表文章
+       * @param article.body
+       */
+      submit(article){
+        this.loading = true
+        const data = {title:article.title,content:article.body,articleType:article.Type}
+        axios.post('/api/addArticle',data).then( res => {
+          console.log(res.data);
+          // console.log(article.body);
+          if(res.data.result === 'success'){
+            this.loading = false
+            Toast({
+              message: '发表成功',
+               icon: 'like-o'
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          Toast({
+          message: '发表失败，请重新发送',
+          icon: 'like-o'
+          });
+          this.loading = false
+        })
+      },
+      /**
+       * 文章类别
+       */
+      contentType(value){
+        this.article.Type = value
       }
   }
 };

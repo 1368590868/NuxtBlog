@@ -36,8 +36,8 @@ export default {
     return{ 
       initTitle:{
       mode: 'black', // 两种颜色  [red | black ]
-          cnTitle: '妹子加微信', // 标题
-          enTitle: 'this is life aritcle', // 英文标题
+          cnTitle: '一个人', // 标题
+          enTitle: 'this is My Blog', // 英文标题
           icon: '&#xe634;' // iconfont
     }
     }

@@ -9,7 +9,9 @@ import {
   List,
   Avatar,
   Input,
-  BackTop
+  BackTop,
+  Spin,
+  Select
 } from 'ant-design-vue';
 // 引入Vant
 import {
@@ -25,6 +27,8 @@ Vue.use(Tooltip)
 Vue.use(Menu)
 Vue.use(Icon)
 // Vue.use(Carousel)
+Vue.use(Spin)
+Vue.use(Select)
 Vue.use(Comment)
 Vue.use(List)
 Vue.use(Avatar)

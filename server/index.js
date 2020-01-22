@@ -7,6 +7,7 @@ const bodyParser = require('koa-bodyparser')
 
 // 引入数据库操作文件
 const imgRouter = require('./interface/img')
+const articleRouter = require('./interface/article')
 
 
 const app = new Koa()
@@ -40,6 +41,9 @@ async function start () {
   app
     .use(imgRouter.routes())
     .use(imgRouter.allowedMethods());
+  app
+    .use(articleRouter.routes())
+    .use(articleRouter.allowedMethods());
   
 
 
