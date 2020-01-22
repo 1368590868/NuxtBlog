@@ -40,17 +40,19 @@ export default {
          */
       $imgAdd(pos,$file){
            var formdata = new FormData();
-           formdata.append('image', $file);
+           formdata.append('file', $file);
            console.log($file);
            axios({
                url: 'http://irlin.cn:3001/api/upload',
                method: 'post',
+               headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                data: formdata,
-               headers: { 'Content-Type': 'multipart/form-data' },
-           }).then((url) => {
+           }).then((res) => {
                // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
                // $vm.$img2Url 详情见本页末尾
-               $vm.$img2Url(pos, url);
+               let url = `http://cdn.irlin.cn/${res.data.data.key}`
+               console.log(res.data.data.key);
+               this.$refs.md.$img2Url(pos, url) ;
            }).catch(error => {console.log(error);})
 
       }
