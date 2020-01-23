@@ -6,7 +6,7 @@
    <v-title></v-title>
    <!-- 文章信息 -->
    <div class="index">
-  <aritcle :aritcle='this.aritcle'></aritcle>
+  <aritcle :aritcle='aritcle'></aritcle>
   <!-- 个人信息title -->
   <v-title class="per-info-title" :initTitle='initTitle'></v-title>
    <!-- 个人信息 -->
@@ -58,9 +58,9 @@ export default {
   async asyncData({$axios}){
     let {data} = await $axios({
       method:"get",
-      url:'/mock/index.json'
+      url:'/api/article'
     })
-    return {aritcle:data.aritcle}
+    return {aritcle:data.data}
   }
 
 }

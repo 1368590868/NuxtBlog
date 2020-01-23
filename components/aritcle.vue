@@ -2,7 +2,7 @@
   <div class="aritcle-wrap">
       <section class="wow  bounceInDown aritcle" v-for="(item,i) of aritcle" :key="i" data-wow-offset="150" @click="goContent(i)">
           <!-- 文章图片 -->
-          <div class="img" style="width:140px;height:100px">
+          <div class="img" style="width:140px;height:108px">
             <img :src="item.imgurl" height='100%' width='100%'>
           </div>
           <!-- 内容描述 -->
@@ -19,7 +19,7 @@
                    <span class="see">
                   <i class="icon ">&#xe76e;</i>50</span>
               </p>
-              <span class="desc">{{item.desc}}</span>
+              <span class="desc van-multi-ellipsis--l3">{{item.content}}</span>
               
           </div>
       </section>
@@ -72,7 +72,7 @@ export default {
          }
         .aritcle{
             width: 100%;
-            height: 100px;
+            height: 108px;
             position: relative;
             display: flex;
             flex-flow: row nowrap;
@@ -117,8 +117,8 @@ export default {
                    }
                 }
                 .desc{
-                    display: inline-block;
-                    text-indent: 25px;
+                    width: 100%;
+                    font-size: 12px;
                 }
             }
         }
