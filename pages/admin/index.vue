@@ -89,7 +89,7 @@ export default {
             this.loading = false
             Toast({
               message: '发表成功',
-               icon: 'like-o'
+               icon: 'passed'
             });
           }
         })
@@ -97,7 +97,7 @@ export default {
           console.log(error);
           Toast({
           message: '发表失败，请重新发送',
-          icon: 'like-o'
+          icon: 'close'
           });
           this.loading = false
         })
