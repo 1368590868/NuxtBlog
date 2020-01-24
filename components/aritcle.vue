@@ -19,7 +19,7 @@
                    <span class="see">
                   <i class="icon ">&#xe76e;</i>50</span>
               </p>
-              <span class="desc van-multi-ellipsis--l3">{{item.content}}</span>
+              <span class="desc van-multi-ellipsis--l3">{{item.desc}}</span>
               
           </div>
       </section>
@@ -129,10 +129,20 @@ export default {
             padding:0;
             width: (450px / 700px) * 100%;
             .aritcle{
-                .aritcle-content{
-                    .desc{
-                        text-indent: 0px;
+                height: 150px;
+                .desc{
+                    margin-top: 15px;
+                    padding-right: 5px;
+                }
+                .img{
+                    margin-top: 20px;
+                    margin-left: 10px;
+                    img{
+                        border-radius: 0;
                     }
+                }
+                .aritcle-content{
+                    
                     .title{
                         font-size: 18px;
                     }

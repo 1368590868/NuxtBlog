@@ -4,7 +4,10 @@ const articleSchema = mongoose.Schema({
   content: {
     type: String,
     default: ''
-    },
+  },
+  desc: {
+    type: String
+  },
   title: {
     type: String,
     default: ''
