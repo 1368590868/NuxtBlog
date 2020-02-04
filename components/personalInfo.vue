@@ -3,7 +3,7 @@
       <div class="per-content">
           <!-- 个人头像 -->
           <br>
-         <img src="http://vue.iranlin.xyz/header.PNG" height="80px">
+         <img src="http://cdn.irlin.cn/header.PNG" height="80px">
          <p class="name">帅哥林</p>
          <p class="desc">高级前端CV(复制粘贴)工程师</p>
          <p class="github">

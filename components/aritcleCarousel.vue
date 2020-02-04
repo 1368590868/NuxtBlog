@@ -15,8 +15,8 @@
      return{
        imgList: ['https://yezipi.net/api/static/upload/article_cover/origin_1575977988780.jpg',
                   'https://yezipi.net/api/static/upload/article_cover/origin_1569567334552.jpg',
-                  'http://vue.iranlin.xyz/xmj1.jpg',
-                  'http://vue.iranlin.xyz/xmj2.jpg'
+                  'http://cdn.irlin.cn/xmj1.jpg',
+                  'http://cdn.irlin.cn/xmj2.jpg'
        ]
      }
    }

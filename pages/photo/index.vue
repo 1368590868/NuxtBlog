@@ -9,7 +9,7 @@
           height="100%"
           @click="open(2)"
           :lazy-load="true"
-          src="http://vue.iranlin.xyz/header.PNG"
+          src="http://cdn.irlin.cn/header.PNG"
         >
           <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
         </van-image>
@@ -21,7 +21,7 @@
           height="100%"
           @click="open(2)"
           :lazy-load="true"
-          src="http://vue.iranlin.xyz/xmj1.jpg"
+          src="http://cdn.irlin.cn/xmj1.jpg"
         >
           <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
         </van-image>
@@ -45,7 +45,7 @@
           height="100%"
           @click="open(2)"
           :lazy-load="true"
-          src="http://vue.iranlin.xyz/xmj2.jpg"
+          src="http://cdn.irlin.cn/xmj2.jpg"
         >
           <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
         </van-image>
@@ -57,7 +57,7 @@
           height="100%"
           @click="open(2)"
           :lazy-load="true"
-          src="http://vue.iranlin.xyz/xmj2.jpg"
+          src="http://cdn.irlin.cn/xmj2.jpg"
         >
           <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
         </van-image>
@@ -69,7 +69,7 @@
           height="100%"
           @click="open(2)"
           :lazy-load="true"
-          src="http://vue.iranlin.xyz/xmj2.jpg"
+          src="http://cdn.irlin.cn/xmj2.jpg"
         >
           <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
         </van-image>
@@ -81,7 +81,7 @@
           height="100%"
           @click="open(2)"
           :lazy-load="true"
-          src="http://vue.iranlin.xyz/xmj2.jpg"
+          src="http://cdn.irlin.cn/xmj2.jpg"
         >
           <template v-slot:loading>您网络状态为3G，为您玩命加载中</template>
         </van-image>
@@ -112,11 +112,11 @@ export default {
       ImagePreview({
         images: [
           'https://yezipi.net/_nuxt/img/f2b8ac8.jpg',
-          'http://vue.iranlin.xyz/header.PNG',
+          'http://cdn.irlin.cn/header.PNG',
           'https://yezipi.net/api/static/upload/article_cover/thumb_1569567334552.jpg',
           'http://img3.imgtn.bdimg.com/it/u=1023281353,3173368292&fm=26&gp=0.jpg',
-          'http://vue.iranlin.xyz/xmj1.jpg',
-          'http://vue.iranlin.xyz/xmj2.jpg',
+          'http://cdn.irlin.cn/xmj1.jpg',
+          'http://cdn.irlin.cn/xmj2.jpg',
           'http://m.qpic.cn/psb?/V108pDzz1skqBn/xda4wMSbrhKIYcSq6r2v*5cbNaN6EZINPBwYitkUBfg!/b/dDcBAAAAAAAA&bo=AAXQAgAAAAARF*c!&rf=viewer_4'
         ],
         startPosition: i,
