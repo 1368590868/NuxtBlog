@@ -3,6 +3,7 @@ const consola = require('consola')
 const {connect} = require('./dbs/init.js')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('koa-bodyparser')
+const {sendMail} = require('./interface/sendmail.js')
 // const Router = require('koa-router');
 
 // 引入数据库操作文件
@@ -36,6 +37,10 @@ async function start () {
   }
   // 连接mongodb
   connect()
+  // 邮件发送
+  // sendMail('1061235055@qq.com','subject','<h1>sendMail</h1>')
+
+
   app.use(bodyParser());
   // 使用路由
   app
