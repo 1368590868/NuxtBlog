@@ -3,7 +3,7 @@
       <section class="wow  bounceInDown aritcle" v-for="(item,i) of aritcle" :key="i" data-wow-offset="150" @click="goContent(i)">
           <!-- 文章图片 -->
           <div class="img" style="width:140px;height:108px">
-            <img :src="item.imgurl" height='100%' width='100%'>
+            <img :src="item.imgurl" :alt='item.title' height='100%' width='100%'>
           </div>
           <!-- 内容描述 -->
           <div class="aritcle-content">
@@ -11,7 +11,7 @@
               <!-- 时间、留言、点赞 -->
               <p class="title-fu">
                   <span class="time">
-                  <i class="icon ">&#xe685;</i>2020-01-06</span>
+                  <i class="icon ">&#xe685;</i>{{item.createAt}}</span>
                    <span class="feedback">
                   <i class="icon ">&#xe61a;</i>15</span>
                   <span class="love">

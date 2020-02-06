@@ -5,7 +5,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '木木的博客',
     meta: [
       { charset: 'utf-8' },
       { name: 'keywords', content: '冉林的博客,冉林的小站,冉林,木木的小站' },

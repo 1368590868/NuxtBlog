@@ -5,6 +5,7 @@
       <!-- title -->
       <a-input placeholder="文章标题" v-model="article.title"/>
       <a-input placeholder="文章描述" v-model="article.desc"/>
+      <a-input placeholder="首页图片" v-model="article.imgurl"/>
       <!-- 文章类别 --> 
       <a-select defaultValue="life" style="width: 120px;margin-bottom:100px;" @change="contentType">
       <a-select-option value="life">生活文章</a-select-option>
@@ -45,7 +46,8 @@ export default {
         body:'',
         title:'',
         desc :'',
-        Type: 'life'
+        Type: 'life',
+        imgrul: ''
     },
       handbook: "#### how to use mavonEditor in nuxt.js"
     };
@@ -83,7 +85,12 @@ export default {
        */
       submit(article){
         this.loading = true
-        const data = {title:article.title,desc:article.desc,content:article.body,articleType:article.Type}
+        const data = {title:article.title,
+                      desc:article.desc,
+                      content:article.body,
+                      articleType:article.Type,
+                      imgurl:article.imgurl
+              }
         axios.post('/api/addArticle',data).then( res => {
           console.log(res.data);
           // console.log(article.body);

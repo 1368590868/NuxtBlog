@@ -11,7 +11,11 @@ const articleSchema = mongoose.Schema({
   title: {
     type: String,
     default: ''
-    },
+  },
+  imgurl: {
+    type: String,
+    default: 'http://cdn.irlin.cn/xmj1.jpg'
+  },
   articleType: {
       type:  String
     },
