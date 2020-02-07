@@ -85,7 +85,7 @@ export default {
 .header-bg{
     width: 100%;
     height: 75px;
-    background-image: url('http://cdn.irlin.cn/header.jpg') ;
+    background-image: url('../assets/img/header.jpg') ;
     background-size: cover;
     background-repeat: no-repeat;
     .back{
