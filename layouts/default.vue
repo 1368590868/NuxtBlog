@@ -16,7 +16,7 @@
     </header>
     <!-- 全局背景图片粒子效果 -->
     <div class="bgc">
-      <client-only placeholder="Loading...">
+      <client-only placeholder="背景图片加载中...">
         <vue-particles
           color="#dedede"
           :particleOpacity="0.7"
@@ -106,7 +106,7 @@ export default {
    left:0;
     #particles-js{
      
-      height: 2000px;
+      height: 100%;
     }
   }
   footer{

@@ -1,6 +1,13 @@
 <template>
   <div class="content">
-      <h1>news{{$route.params.id}}</h1>
+      <!-- 文章内容 -->
+      <article>
+          <!-- 文章标题 -->
+        <div class="title">{{articleInfo[0].title}}</div>
+        <client-only>
+            <mavon-editor codeStyle="tomorrow-night" v-html="articleInfo[0].content"></mavon-editor>
+        </client-only>
+      </article>
   </div>
 </template>
 
@@ -9,14 +16,21 @@ export default {
     /**
      * 文章参数校验必须为数字
      */
-    validate({params}){
-        return /^\d+$/.test(params.id)
-    }
+    // validate({params}){
+    //     return /^\d+$/.test(params.id)
+    // }
+    async asyncData({$axios,params}) {
+        let data = await $axios.get(`/api/article/${params.id}`)
+        console.log(data.data.data);
+        return {articleInfo : data.data.data}
+    },
 }
 </script>
 
 <style lang='less' scoped>
-    h1{
-        margin-top: 200px;
+    .content{
+        margin-top: 75px;
+        position: relative;
+        z-index: 99;
     }
 </style>

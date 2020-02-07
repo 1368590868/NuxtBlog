@@ -1,6 +1,6 @@
 <template>
   <div class="aritcle-wrap">
-      <section class="wow  bounceInDown aritcle" v-for="(item,i) of aritcle" :key="i" data-wow-offset="150" @click="goContent(i)">
+      <section class="wow  bounceInDown aritcle" v-for="item of aritcle" :key="item._id" data-wow-offset="150" @click="goContent(item._id)">
           <!-- 文章图片 -->
           <div class="img" style="width:140px;height:108px">
             <img :src="item.imgurl" :alt='item.title' height='100%' width='100%'>
@@ -54,7 +54,7 @@ export default {
        * 首页文章跳转到文章列表
        */
       goContent(id){
-          this.$router.push({name:'article', params : {id:id}});
+          this.$router.push({path:`article/${id}`, params : {id:id}});
       }
   }
 }

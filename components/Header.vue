@@ -19,10 +19,10 @@
         <a-icon type="picture" />相册
         </nuxt-link>
       </a-menu-item>
-      <a-menu-item key="feedback"><nuxt-link to="/comment" tag="div"><a-icon type="link" />留言 </nuxt-link></a-menu-item>
+      <a-menu-item key="feedback"><nuxt-link to="/comment" tag="div"><i class="icon">&#xe61e;</i>&nbsp;&nbsp;留言 </nuxt-link></a-menu-item>
       <a-menu-item key="outLink">
-        <nuxt-link to="/ranlin" tag="div">
-        <a-icon type="link" />友链 
+        <nuxt-link to="/" tag="div">
+        <a-icon type="link" />友链
         </nuxt-link>
         </a-menu-item>
     </a-menu>
@@ -63,7 +63,7 @@
           case 'read' : this.$router.push('/article'); this.isOpen = false; break;
           case 'photo' : this.$router.push('/photo') ;this.isOpen = false ; break;
           case 'comment' : this.$router.push('/comment'); this.isOpen = false ; break;
-          case 'link' : this.$router.push('/ranlin');this.isOpen = false ; break;
+          case 'link' : this.$router.push('/');this.isOpen = false ; break;
         }
       }
       
