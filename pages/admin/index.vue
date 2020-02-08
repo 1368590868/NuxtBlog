@@ -3,6 +3,7 @@
     <!-- 全屏loading -->
     <a-spin tip='加油，每天写一篇' :spinning="loading">
       <!-- title -->
+      {{this.$route.query.token}}
       <a-input placeholder="文章标题" v-model="article.title"/>
       <a-input placeholder="文章描述" v-model="article.desc"/>
       <a-input placeholder="首页图片" v-model="article.imgurl"/>
