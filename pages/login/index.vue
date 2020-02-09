@@ -18,7 +18,7 @@
 
 <script>
 import axios from 'axios';
-import {Toast} from 'vant'
+import { Toast } from 'vant'
 import Cookie from 'js-cookie'
 export default {
   layout (context) {
@@ -26,51 +26,64 @@ export default {
   },
   methods: {
     login () {
-  const client_id = '912f17eced062dcd5d85';
-  const authorize_uri = 'https://github.com/login/oauth/authorize';
+      const client_id = '912f17eced062dcd5d85';
+      const authorize_uri = 'https://github.com/login/oauth/authorize';
 
-  location.href = `${authorize_uri}?client_id=${client_id}`
+      location.href = `${authorize_uri}?client_id=${client_id}`
     },
-    getToken(code){
-            axios({
-                method:'post',
-                url:'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token',
-                data:{
-                client_id:'912f17eced062dcd5d85',
-                client_secret: 'c3a71d2489d0b4e9a02470cdbbd8722ac1e34374',
-                code: code
-                }
-            }).then(res => {
-                let token = null
-                // 获取token拆分获取
-          token = res.data.split('=')[1].split('&')[0]
-          if (token === 'bad_verification_code') {
-            Toast({
-                    message: '登陆失败',
-                    icon: 'error'
-                });
-            return
+    getToken (code) {
+      axios({
+        method: 'post',
+        url: 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token',
+        data: {
+          client_id: '912f17eced062dcd5d85',
+          client_secret: 'c3a71d2489d0b4e9a02470cdbbd8722ac1e34374',
+          code: code
         }
-        this.$router.push({path:'/admin',query:{token:token}})
+      }).then(res => {
+        let token = null
+        // 获取token拆分获取
+        token = res.data.split('=')[1].split('&')[0]
+        if (token === 'bad_verification_code') {
+          Toast({
+            message: '登陆失败',
+            icon: 'error'
+          });
+          return
+        }
+        this.$router.push({ path: '/admin', query: { token: token } })
         // 本地存储保存token
         Cookie.set('token', token)
 
+        // 用户信息查询
+        axios({
+          method: 'get',
+          url: 'https://api.github.com/user',
+          headers: {
+            accept: 'application/json',
+            Authorization: `token ${token}`
+          }
+        }).then((res) => {
+          console.log(res.data);
+        }).catch((error) => {
+          console.log(error);
         })
+      })
     }
-    
+
   },
-  mounted(){
+  mounted () {
     //   查询是否又token
     // if(process.client){
-        if(Cookie.get('token') == null || Cookie.get('token') === ''){
-        const code = this.$route.query.code
+    if (Cookie.get('token') == null || Cookie.get('token') === '') {
+      const code = this.$route.query.code
 
-        if (code == null || code === '') {
+      if (code == null || code === '') {
         return
       }
-        this.getToken(code)
-    // }
-  }
+      this.getToken(code)
+      // }
+    }
   }
 }
 </script>
@@ -85,7 +98,7 @@ export default {
   align-items: center;
 
   .logo-div {
-      padding-top: 10px;
+    padding-top: 10px;
     margin-top: 3vh;
     border: 1px solid #1890ff;
     cursor: pointer;
