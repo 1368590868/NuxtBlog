@@ -97,6 +97,16 @@ export default {
   components: {
     VTitle
   },
+    head(){
+    return{
+      title:'私密照片',
+      meta: [{
+        hid: "description",
+        name: "description",
+        content: "夏铭杰的私密照片"
+      }]
+    }
+  },
   data () {
     return {
       initTitle: {

@@ -41,7 +41,16 @@ export default {
   // seo
   head(){
     return{
-      title:'全部文章-帅气的木木'
+      title:'全部文章-帅气的木木',
+      meta: [{
+        hid: "description",
+        name: "description",
+        content: "木木的生活小记与大前端相关记录"
+      }],
+      meta:[{
+            'name':'keywords',
+            'content': '全部文章、nuxt seo、vuecli3'
+        }]
     }
   }
 }
