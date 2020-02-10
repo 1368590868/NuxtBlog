@@ -1,5 +1,6 @@
 <template>
   <div class="admin-login">
+    <a-spin tip='登陆中' :spinning="loading">
     <div>
       <div>
         <h2>
@@ -13,6 +14,7 @@
         <i class="icon" style="font-size: 50px;margin-top: 10px;color:rgba(0, 0, 0, 0.65)">&#xe64a;</i>
       </div>
     </div>
+    </a-spin>
   </div>
 </template>
 
@@ -24,14 +26,21 @@ export default {
   layout (context) {
     return 'admin'
   },
+  data(){
+    return {
+      loading: false
+    }
+  },
   methods: {
     login () {
+      this.loading = true
       const client_id = '912f17eced062dcd5d85';
       const authorize_uri = 'https://github.com/login/oauth/authorize';
 
       location.href = `${authorize_uri}?client_id=${client_id}`
     },
     getToken (code) {
+      this.loading = true
       axios({
         method: 'post',
         url: 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token',
@@ -65,9 +74,14 @@ export default {
           }
         }).then((res) => {
           console.log(res.data);
+          this.loading = false
         }).catch((error) => {
           console.log(error);
+          this.loading = false
         })
+      }).catch((error) => {
+        console.log(error);
+        this.loading = false
       })
     }
 
@@ -96,7 +110,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   .logo-div {
     padding-top: 10px;
     margin-top: 3vh;
