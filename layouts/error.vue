@@ -5,7 +5,7 @@
       <div class="white"></div>
       <p class='error-desc'>你的页面被我吞掉了</p>
     </div>
-    <div v-else class="text-magic" data-word='404'>
+    <div v-else class="text-magic" data-word='500'>
       500
       <div class="white"></div>
       <p class='error-desc'>服务器正在修复</p>

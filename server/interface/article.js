@@ -31,6 +31,16 @@ router.get('/api/article/:id', async (ctx) => {
   }
 })
 
+router.post('/api/addView', async (ctx) => {
+  const body = ctx.request.body
+  consola.info(body)
+  const view = new articleModel(body)
+  await view.save()
+  ctx.body = {
+    result: 'success'
+  }
+})
+
 router.post('/api/addArticle', async (ctx) => {
   const body = ctx.request.body
   consola.info(body)

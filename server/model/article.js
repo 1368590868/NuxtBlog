@@ -26,6 +26,10 @@ const articleSchema = mongoose.Schema({
   lastUpdateAt: {
     type: Date,
     default: Date.now
+  },
+  view: {
+    type: Number,
+    default: 13
   }
 })
 

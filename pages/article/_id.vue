@@ -3,7 +3,16 @@
       <!-- 文章内容 -->
       <article>
           <!-- 文章标题 -->
-        <div class="title">{{articleInfo[0].title}}</div>
+        <div class="title">
+            <h2>{{articleInfo[0].title}}</h2>
+           <!-- 时间、留言、点赞 -->
+              <p class="title-fu">
+                  <span class="time">
+                  <i class="icon ">&#xe685;&nbsp;</i>{{articleInfo[0].createAt}}</span>
+                   <span class="see">
+                  <i class="icon ">&#xe76e;&nbsp;</i>{{articleInfo[0].view}}</span>
+              </p>
+        </div>
         <client-only>
             <mavon-editor codeStyle="tomorrow-night" v-html="articleInfo[0].content"></mavon-editor>
         </client-only>
@@ -32,5 +41,42 @@ export default {
         margin-top: 75px;
         position: relative;
         z-index: 99;
+        article{
+            padding:0 10vw;
+            .title{
+                background: #fff;
+                padding: 20px 0;
+                .title-fu{
+                    display: flex;
+                    justify-content: space-around; 
+                    font-size: 12px; 
+                }
+                h2{
+                    text-align: center;
+                    font-weight:bold;
+                }
+            }
+        }
+    }
+    @media screen and(max-width: 720px){
+        .content{
+            background: #ffffff;
+            article{
+            padding:0 10px;
+                .title{
+                    font-size: 12px!important;
+                }
+            }
+        }
+    }
+    @media screen and(min-width: 1200px){
+        .content{
+            article{
+            padding:0 16vw;
+                .title{
+                    font-size: 14px!important;
+                }
+            }
+        }
     }
 </style>
