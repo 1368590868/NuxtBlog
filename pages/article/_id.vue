@@ -21,18 +21,32 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     /**
      * 文章参数校验必须为数字
      */
-    // validate({params}){
-    //     return /^\d+$/.test(params.id)
-    // }
+    validate({params}){
+        return /^\S{24}$/.test(params.id)
+    },
     async asyncData({$axios,params}) {
         let data = await $axios.get(`/api/article/${params.id}`)
         console.log(data.data.data);
         return {articleInfo : data.data.data}
     },
+    mounted(){
+        const id = this.$route.params.id
+        const view = this.articleInfo[0].view
+        axios({
+            method: 'post',
+            url: '/api/addView',
+            data:{
+                id : id,
+                view: view
+            }
+        })
+          .catch(e => {console.log(e);})
+    }
 }
 </script>
 

@@ -12,12 +12,12 @@
               <p class="title-fu">
                   <span class="time">
                   <i class="icon ">&#xe685;</i>{{item.createAt}}</span>
-                   <span class="feedback">
+                   <!-- <span class="feedback">
                   <i class="icon ">&#xe61a;</i>15</span>
                   <span class="love">
-                  <i class="icon ">&#xe74f;</i>10</span>
+                  <i class="icon ">&#xe74f;</i>10</span> -->
                    <span class="see">
-                  <i class="icon ">&#xe76e;</i>50</span>
+                  <i class="icon ">&#xe76e;</i>{{item.view}}</span>
               </p>
               <span class="desc van-multi-ellipsis--l3">{{item.desc}}</span>
               
