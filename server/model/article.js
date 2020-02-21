@@ -14,7 +14,7 @@ const articleSchema = mongoose.Schema({
   },
   imgurl: {
     type: String,
-    default: 'http://cdn.irlin.cn/xmj1.jpg'
+    default: 'http://cdn.irlin.cn/wangwang.jpeg'
   },
   articleType: {
       type:  String
@@ -29,7 +29,7 @@ const articleSchema = mongoose.Schema({
   },
   view: {
     type: Number,
-    default: 13
+    default: 1
   }
 })
 

@@ -32,7 +32,7 @@ router.get('/api/article/:id', async (ctx) => {
 })
 
 // 文章访问量
-router.post('/api/addView', async (ctx) => {
+router.put('/api/addView', async (ctx) => {
   const body = ctx.request.body
   await articleModel.updateOne({_id:body.id},{$set:{view:body.view += 1}})
   ctx.body = {
