@@ -8,7 +8,7 @@
            <!-- 时间、留言、点赞 -->
               <p class="title-fu">
                   <span class="time">
-                  <i class="icon ">&#xe685;&nbsp;</i>{{articleInfo[0].createAt}}</span>
+                  <i class="icon ">&#xe685;&nbsp;</i>{{time}}</span>
                    <span class="see">
                   <i class="icon ">&#xe76e;&nbsp;</i>{{articleInfo[0].view}}</span>
               </p>
@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment'
 export default {
     /**
      * 文章参数校验必须为数字
@@ -29,16 +30,23 @@ export default {
     validate({params}){
         return /^\S{24}$/.test(params.id)
     },
+    data(){
+        time:''
+    },
     async asyncData({$axios,params}) {
         let data = await $axios.get(`/api/article/${params.id}`)
         console.log(data.data.data);
         return {articleInfo : data.data.data}
     },
+    created(){
+        // 格式化UTC日期格式
+        this.time = moment(this.articleInfo[0].createAt).format('YYYY-MM-DD, h:mm:ss')
+    },
     mounted(){
         const id = this.$route.params.id
         const view = this.articleInfo[0].view
         axios({
-            method: 'post',
+            method: 'put',
             url: '/api/addView',
             data:{
                 id : id,
