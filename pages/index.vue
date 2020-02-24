@@ -55,8 +55,11 @@ export default {
   /**
    * 获取文章的信息
    */
-  async asyncData({$axios}){
-    let {data} = await $axios.get('/api/homeArticle')
+  async asyncData({$axios,env}){
+    let {data} = await $axios({
+      method : 'get',
+      url : `${env.BASE_URL}/api/homeArticle`
+    })
     return {aritcle:data.data}
   }
 

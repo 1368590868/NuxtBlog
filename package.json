@@ -5,9 +5,9 @@
   "author": "Ranlin",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
-    "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "dev": "cross-env  NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "cross-env BASE_URL=https://irlin.cn nuxt build ",
+    "start": "cross-env NODE_ENV=production  node server/index.js",
     "generate": "nuxt generate"
   },
   "dependencies": {

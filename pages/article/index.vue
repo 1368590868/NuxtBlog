@@ -31,10 +31,10 @@ export default {
    /**
    * 获取文章的信息
    */
-  async asyncData({$axios}){
+  async asyncData({$axios,env}){
     let {data} = await $axios({
       method:"get",
-      url:'/api/article'
+      url:`${env.BASE_URL}/api/article`
     })
     return {aritcle:data.data}
   },

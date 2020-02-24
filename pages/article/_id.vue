@@ -33,8 +33,11 @@ export default {
     data(){
         time:''
     },
-    async asyncData({$axios,params}) {
-        let data = await $axios.get(`/api/article/${params.id}`)
+    async asyncData({$axios,params,env}) {
+        let data = await $axios({
+            method: 'get',
+            url: `${env.BASE_URL}/api/article/${params.id}`
+        })
         console.log(data.data.data);
         return {articleInfo : data.data.data}
     },
