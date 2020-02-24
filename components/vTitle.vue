@@ -26,7 +26,7 @@ export default {
         return {  
           mode: 'black', // 两种颜色  [red | black ]
           cnTitle: '文章列表', // 标题
-          enTitle: 'Hello I Love You', // 英文标题
+          enTitle: 'Someday or One Day', // 英文标题
           icon: '&#xe63e;' // iconfont
         };
       }
