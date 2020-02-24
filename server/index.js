@@ -3,6 +3,7 @@ const consola = require('consola')
 const {connect} = require('./dbs/init.js')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('koa-bodyparser')
+var cors = require('koa2-cors');
 // const {sendMail} = require('./interface/sendmail.js')
 // const Router = require('koa-router');
 
@@ -12,6 +13,7 @@ const articleRouter = require('./interface/article')
 
 
 const app = new Koa()
+app.use(cors());
 // const router = new Router();
 
 // Import and Set Nuxt.js options

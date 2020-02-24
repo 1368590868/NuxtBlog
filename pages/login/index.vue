@@ -56,8 +56,9 @@ export default {
         if (token === 'bad_verification_code') {
           Toast({
             message: '登陆失败',
-            icon: 'error'
+            icon: 'cross'
           });
+          this.loading = false
           return
         }
         this.$router.push({ path: '/admin', query: { token: token } })
@@ -75,6 +76,10 @@ export default {
         }).then((res) => {
           console.log(res.data);
           this.loading = false
+          Toast({
+            message: '登陆成功',
+            icon: 'success'
+          });
         }).catch((error) => {
           console.log(error);
           this.loading = false
@@ -87,17 +92,17 @@ export default {
 
   },
   mounted () {
-    //   查询是否又token
-    // if(process.client){
-    if (Cookie.get('token') == null || Cookie.get('token') === '') {
+   
       const code = this.$route.query.code
-
       if (code == null || code === '') {
-        return
-      }
+         Toast({
+            message: '重新登陆',
+            icon: 'fail'
+          });
+          return
+      }else{
       this.getToken(code)
-      // }
-    }
+      }
   }
 }
 </script>
