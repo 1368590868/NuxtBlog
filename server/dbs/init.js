@@ -6,7 +6,8 @@ module.exports = {
   connect() {
     mongoose.connect(db, {
       useCreateIndex: true,
-      useNewUrlParser: true
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     })
     mongoose.connection.on('disconnect', () => {
       console.log('***********数据库断开***********')
