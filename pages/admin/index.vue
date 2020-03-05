@@ -14,7 +14,7 @@
       </a-select>
       <!-- 文章内容 -->
     <client-only>
-      <mavon-editor ref=md @imgAdd="$imgAdd"  codeStyle="tomorrow-night" @change="markChange" :toolbars="markdownOption" v-model="handbook"/>
+      <mavon-editor ref=md  toolbarsBackground='#f0f2f5' @imgAdd="$imgAdd"  codeStyle="tomorrow-night" @change="markChange" :toolbars="markdownOption" v-model="handbook"/>
     </client-only>
   <div v-html="article.body"></div>
   <!-- 发表文章 -->

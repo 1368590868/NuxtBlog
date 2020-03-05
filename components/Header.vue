@@ -4,12 +4,12 @@
     <i class="icon menu-btn" @click="OpenMenu">&#xe65d;</i>
     <!-- PC Menu -->
     <a-menu class="PC-menu" v-model="menu" mode="horizontal"   >
-      <a-menu-item key="home" > 
+      <a-menu-item key="index" > 
         <nuxt-link to="/" tag="div">
         <a-icon type="home" />首页 
         </nuxt-link>
         </a-menu-item>
-      <a-menu-item key="read" >
+      <a-menu-item key="article" >
         <nuxt-link to="/article" tag="div">
           <a-icon type="read" />文章
           </nuxt-link>
@@ -19,8 +19,8 @@
         <a-icon type="picture" />相册
         </nuxt-link>
       </a-menu-item>
-      <a-menu-item key="feedback"><nuxt-link to="/comment" tag="div"><i class="icon">&#xe61e;</i>&nbsp;&nbsp;留言 </nuxt-link></a-menu-item>
-      <a-menu-item key="outLink">
+      <a-menu-item key="comment"><nuxt-link to="/comment" tag="div"><i class="icon">&#xe61e;</i>&nbsp;&nbsp;留言 </nuxt-link></a-menu-item>
+      <a-menu-item key="ranlin520">
         <nuxt-link to="/ranlin520" tag="div">
         <a-icon type="link" />友链
         </nuxt-link>
@@ -44,11 +44,15 @@
   export default {
     data() {
       return {
-        menu:['home'],
+        menu:['index'],
         // 菜单打开与否
         isOpen:false,
         
       };
+    },
+    mounted(){
+      //取路由名称给菜单选项
+      this.menu = this.$route.name?[this.$route.name]:[this.$route.path.split('/')[1]]
     },
     methods:{
       OpenMenu(){

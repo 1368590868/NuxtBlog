@@ -14,7 +14,7 @@
               </p>
         </div>
         <client-only>
-            <mavon-editor codeStyle="tomorrow-night" v-html="articleInfo[0].content"></mavon-editor>
+            <mavon-editor :boxShadow='false' codeStyle="tomorrow-night" v-html="articleInfo[0].content"></mavon-editor>
         </client-only>
       </article>
   </div>
