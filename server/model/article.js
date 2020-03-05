@@ -5,6 +5,10 @@ const articleSchema = mongoose.Schema({
     type: String,
     default: ''
   },
+  markdown: {
+    type: String,
+    default: ''
+  },
   desc: {
     type: String
   },

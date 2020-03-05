@@ -31,6 +31,26 @@ router.get('/api/article/:id', async (ctx) => {
   }
 })
 
+// 文章更新
+router.put('/api/updateArticle', async (ctx) => {
+  const body = ctx.request.body
+  const result = await articleModel.updateOne({ _id: body.id },
+    {
+      $set:
+      {
+        content: body.content,
+        markdown: body.markdown,
+        title: body.title,
+        imgurl: body.imgurl,
+        desc: body.desc,
+        lastUpdateAt: body.lastUpdateAt
+      }
+    })
+  ctx.body = {
+    result: 'success'
+  }
+})
+
 // 文章访问量
 router.put('/api/addView', async (ctx) => {
   const body = ctx.request.body

@@ -1,6 +1,6 @@
 const path = require('path')
 const mongoose = require('mongoose')
-const db = 'mongodb://irlin.cn:27017/blog'
+const db = 'mongodb://root:ranlin520..@irlin.cn:27017/blog'
 
 module.exports = {
   connect() {
