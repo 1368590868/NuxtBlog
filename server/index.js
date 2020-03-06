@@ -4,13 +4,14 @@ const {connect} = require('./dbs/init.js')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('koa-bodyparser')
 var cors = require('koa2-cors');
+// 邮箱发送
 // const {sendMail} = require('./interface/sendmail.js')
 // const Router = require('koa-router');
 
 // 引入数据库操作文件
 const imgRouter = require('./interface/img')
 const articleRouter = require('./interface/article')
-
+const commentRouter = require('./interface/comment')
 
 const app = new Koa()
 app.use(cors());
@@ -51,7 +52,9 @@ async function start () {
   app
     .use(articleRouter.routes())
     .use(articleRouter.allowedMethods());
-  
+  app
+    .use(commentRouter.routes())
+    .use(commentRouter.allowedMethods())
 
 
   
