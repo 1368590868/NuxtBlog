@@ -51,6 +51,15 @@ router.put('/api/updateArticle', async (ctx) => {
   }
 })
 
+// 文章删除
+router.delete('/api/deleteArticle/:id', async (ctx) => {
+  let id = ctx.params.id
+  await articleModel.remove({ _id : id })
+  ctx.body = {
+    result : 'success'
+  }
+})
+
 // 文章访问量
 router.put('/api/addView', async (ctx) => {
   const body = ctx.request.body
