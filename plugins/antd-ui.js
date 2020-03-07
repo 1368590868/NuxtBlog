@@ -8,10 +8,8 @@ import {
   Comment,
   List,
   Avatar,
-  Input,
   BackTop,
   Spin,
-  Select
 } from 'ant-design-vue';
 // 引入Vant
 import {
@@ -20,7 +18,10 @@ import {
   Lazyload,
   Image,
   Swipe,
-  SwipeItem
+  SwipeItem,
+  Field,
+  Cell,
+  CellGroup
 } from 'vant';
 Vue.use(Button)
 Vue.use(Tooltip)
@@ -28,11 +29,9 @@ Vue.use(Menu)
 Vue.use(Icon)
 // Vue.use(Carousel)
 Vue.use(Spin)
-Vue.use(Select)
 Vue.use(Comment)
 Vue.use(List)
 Vue.use(Avatar)
-Vue.use(Input)
 Vue.use(BackTop)
 // Vant
 Vue.use(Toast)
@@ -41,3 +40,6 @@ Vue.use(Lazyload)
 Vue.use(Image)
 Vue.use(Swipe)
 Vue.use(SwipeItem)
+Vue.use(Field)
+Vue.use(Cell)
+Vue.use(CellGroup)
