@@ -123,12 +123,11 @@ export default {
   }
   footer{
     width: 100%;
-    height: 30px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    margin: 50px auto;
     font-size: 16px;
     position: relative;
     z-index: 99;
