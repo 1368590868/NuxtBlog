@@ -10,6 +10,9 @@ const commentSchema = mongoose.Schema({
   email: {
     type: String
   },
+  article: {
+    type: String
+  },
   createAt: {
     type: Date,
     default: Date.now

@@ -69,6 +69,7 @@ router.put('/api/addView', async (ctx) => {
   }
 })
 
+// 添加文章
 router.post('/api/addArticle', async (ctx) => {
   const body = ctx.request.body
   consola.info(body)

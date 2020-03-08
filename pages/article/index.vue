@@ -4,9 +4,6 @@
       <v-title class="title" :initTitle='initTitle'></v-title>
       <!-- 全部文章描述 -->
       <all-article :aritcle='aritcle' class="article-desc"></all-article>
-      <!-- 文章跳转 -->
-      <nuxt-link to="/life-article/9">99news</nuxt-link>
-      <a href="/article/ranlin">99news</a>
   </div>
 </template>
 

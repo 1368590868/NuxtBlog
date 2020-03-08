@@ -7,6 +7,12 @@
    <!-- 文章信息 -->
    <div class="index">
   <aritcle :aritcle='aritcle'></aritcle>
+  <!-- all article -->
+  <div class="wow bounceInLeft more" data-wow-offset="150">
+      <nuxt-link to="/article">
+        <a-button type="dashed" icon="search">查看全部</a-button>
+      </nuxt-link>
+    </div>
   <!-- 个人信息title -->
   <v-title class="per-info-title" :initTitle='initTitle'></v-title>
    <!-- 个人信息 -->
@@ -79,6 +85,9 @@ export default {
       .per-info-title{
         display: none;
       }
+    }
+    .more{
+      margin: 10px auto;
     }
    
   }

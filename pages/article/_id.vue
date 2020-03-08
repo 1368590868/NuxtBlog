@@ -24,18 +24,15 @@
       <div class="comment">
         <a-list
           class="comment-list"
-          :header="`${data.length} replies`"
+          :header="`共${commentList.length} 条评论`"
           itemLayout="horizontal"
-          :dataSource="data"
+          :dataSource="commentList"
         >
-          <a-list-item slot="renderItem" slot-scope="item">
-            <a-comment :author="item.author" :avatar="item.avatar">
-              <template slot="actions">
-                <span v-for="(action,i) in item.actions" :key="i">{{action}}</span>
-              </template>
-              <p slot="content">{{item.content}}</p>
-              <a-tooltip slot="datetime" :title="item.datetime.format('YYYY-MM-DD HH:mm:ss')">
-                <span>{{item.datetime.fromNow()}}</span>
+          <a-list-item slot="renderItem" slot-scope="comment">
+            <a-comment :author="comment.username" avatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png">
+              <p slot="content">{{comment.comment}}</p>
+              <a-tooltip slot="datetime" :title="comment.createAt">
+                <span>{{comment.fromNow}}</span>
               </a-tooltip>
             </a-comment>
           </a-list-item>
@@ -58,7 +55,7 @@
           v-model="email"
           required
           label="邮箱"
-          placeholder="填写你的邮箱，订阅你的评论"
+          placeholder="填写邮箱及时获取评论通知"
           :error-message="error.email"
           @blur="checkPhone('email')"
         />
@@ -69,7 +66,7 @@
           label="评论"
           type="textarea"
           maxlength="300"
-          placeholder="看都看了，说点什么吧"
+          placeholder="看都看了，写点什么吧，支持少量HTML标签"
           show-word-limit
           required
           :error-message="error.content"
@@ -120,6 +117,7 @@ export default {
         mode: 'black',
         icon: '&#xe61a;'
       },
+      commentList: [],
       // new comment source
       data: [
         {
@@ -148,7 +146,17 @@ export default {
      */
     submit () {
       this.isloading = true
-      setTimeout(() => this.isloading = false, 1000)
+      axios({
+        method:'post',
+        url:`${process.env.BASE_URL}/api/addComment`,
+        data:{
+          username: this.name,
+          email: this.email,
+          comment: this.content,
+          article: this.$route.params.id
+        }
+      }).then(res => { this.isloading = false})
+        .catch(() => this.isloading = false)
     },
 
     /**
@@ -178,6 +186,30 @@ export default {
         this.error = { ...this.error, [type]: '' };
       }
     },
+    /**
+     * 阅读量
+     */
+    addView(){
+      const id = this.$route.params.id
+    const view = this.articleInfo[0].view
+    return axios({
+      method: 'put',
+      url: '/api/addView',
+      data: {
+        id: id,
+        view: view
+      }
+    })
+      .catch(e => { console.log(e); })
+    },
+    /**
+     * 评论查询
+     */
+    getComment(){
+      return axios.get(`${process.env.BASE_URL}/api/comment/${this.$route.params.id}`).then(res => {
+        this.commentList = res.data.data
+        }).catch(error => {console.log(error);})
+    }
   },
   /**
    * 获取当前文章内容
@@ -195,17 +227,17 @@ export default {
     this.time = moment(this.articleInfo[0].createAt).format('YYYY-MM-DD, h:mm:ss')
   },
   mounted () {
-    const id = this.$route.params.id
-    const view = this.articleInfo[0].view
-    axios({
-      method: 'put',
-      url: '/api/addView',
-      data: {
-        id: id,
-        view: view
+    /**
+     * [addView,comment]
+     */
+    axios.all([this.addView(),this.getComment()]).then(() => {
+      for(let item of this.commentList){
+        item.createAt = moment(item.createAt).format('YYYY-MM-DD')
+        item.fromNow = moment(item.createAt).startOf('day').fromNow()
+        console.log(item.fromNow);
       }
+      console.log(this.commentList);
     })
-      .catch(e => { console.log(e); })
   }
 }
 </script>

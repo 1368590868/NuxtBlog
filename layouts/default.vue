@@ -124,6 +124,7 @@ export default {
   footer{
     width: 100%;
     height: 50px;
+    margin-top: 75px;
     display: flex;
     justify-content: center;
     align-items: center;

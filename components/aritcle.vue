@@ -28,11 +28,6 @@
         <span class="desc van-multi-ellipsis--l3">{{item.desc}}</span>
       </div>
     </section>
-    <div class="more">
-      <nuxt-link to="/article">
-        <a-button type="dashed" icon="search">查看全部</a-button>
-      </nuxt-link>
-    </div>
   </div>
 </template>
 
