@@ -92,6 +92,16 @@ export default {
   validate ({ params }) {
     return /^\S{24}$/.test(params.id)
   },
+  head(){
+    return{
+      title:this.articleInfo[0].title,
+      meta: [{
+        hid: this.articleInfo[0]._id,
+        name: 'description',
+        content: this.articleInfo[0].content
+      }]
+    }
+  },
   components: {
     VTitle
   },
@@ -118,25 +128,6 @@ export default {
         icon: '&#xe61a;'
       },
       commentList: [],
-      // new comment source
-      data: [
-        {
-          actions: ['Reply to'],
-          author: 'Han Solo',
-          avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-          content:
-            'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-          datetime: moment().subtract(1, 'days'),
-        },
-        {
-          actions: ['Reply to'],
-          author: 'Han Solo',
-          avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-          content:
-            'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-          datetime: moment().subtract(2, 'days'),
-        },
-      ],
     }
 
   },
@@ -208,7 +199,7 @@ export default {
     getComment(){
       return axios.get(`${process.env.BASE_URL}/api/comment/${this.$route.params.id}`).then(res => {
         this.commentList = res.data.data
-        }).catch(error => {console.log(error);})
+        }).catch(error => {console.log(error);})  
     }
   },
   /**
