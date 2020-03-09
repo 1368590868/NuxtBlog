@@ -6,10 +6,19 @@ const consola = require('consola')
 
 const router = new Router()
 
-// 评论查询api
+// 全部评论查询
+router.get('/api/allComment', async (ctx) => {
+  const result = await commentModel.find({article: 'comment'}).sort({_id:-1})
+  ctx.body = {
+    result: 'success',
+    data: result
+  }
+})
+
+// 文章评论查询api
 router.get('/api/comment/:id', async (ctx, next) => {
   const id = ctx.params.id
-  const result = await commentModel.find({article:id})
+  const result = await commentModel.find({article:id}).sort({_id:-1})
   consola.info('result', result)
   ctx.body = {
     result: 'success',

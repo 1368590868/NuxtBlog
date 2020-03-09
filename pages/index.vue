@@ -87,6 +87,7 @@ export default {
       }
     }
     .more{
+      display: none;
       margin: 10px auto;
     }
    
@@ -98,6 +99,9 @@ export default {
         .per-info-title{
           display: block;
         }
+      }
+      .more{
+        display: block;
       }
     }
   }

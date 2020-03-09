@@ -84,6 +84,7 @@
 <script>
 import axios from 'axios';
 import moment from 'moment'
+import {Toast} from 'vant'
 import VTitle from '../../components/vTitle'
 export default {
   /**
@@ -98,7 +99,7 @@ export default {
       meta: [{
         hid: this.articleInfo[0]._id,
         name: 'description',
-        content: this.articleInfo[0].content
+        content: this.articleInfo[0].desc
       }]
     }
   },
@@ -112,7 +113,6 @@ export default {
       // 表单绑定值
       name: '',
       email: '',
-      time: '',
       content: '',
       message: '',
       error: {
@@ -137,6 +137,27 @@ export default {
      */
     submit () {
       this.isloading = true
+      if(this.name == ''){
+        this.isloading = false
+        return Toast({
+            message: '用户名不能为空',
+            icon: 'cross'
+          });
+      }
+      if(this.email == ''){
+        this.isloading = false
+        return Toast({
+            message: '邮箱不能为空',
+            icon: 'cross'
+          });
+      }
+      if(this.content == ''){
+        this.isloading = false
+        return Toast({
+            message: '评论内容不能为空',
+            icon: 'cross'
+          });
+      }
       axios({
         method:'post',
         url:`${process.env.BASE_URL}/api/addComment`,
@@ -146,7 +167,14 @@ export default {
           comment: this.content,
           article: this.$route.params.id
         }
-      }).then(res => { this.isloading = false})
+      }).then(res => { this.isloading = false
+        this.commentList = [{username: this.name,
+        comment: this.content,
+        createAt:moment().format('YYYY-MM-DD'),
+        fromNow :moment().startOf('day').fromNow()
+        }, ...this.commentList
+        ]
+      })
         .catch(() => this.isloading = false)
     },
 
