@@ -4,8 +4,8 @@
           <!-- 个人头像 -->
           <br>
          <img src="http://cdn.irlin.cn/header.PNG" height="80px">
-         <p class="name">帅哥林</p>
-         <p class="desc">高级前端CV(复制粘贴)工程师</p>
+         <p class="name">木木</p>
+         <p class="desc">初级前端CV(复制粘贴)工程师</p>
          <p class="github">
              <i class="icon">&#xe64a;</i>&nbsp;<a href="https://github.com/1368590868" target="_blank">https://github.com/1368590868</a>
          </p>
@@ -14,7 +14,6 @@
              <i class="icon wechat">&#xe614;</i><span>&nbsp;ranlin_520</span>
          </p>
          <p class="wow bounce webzan" data-wow-offset="150" data-wow-iteration='99' >
-             <!-- <i class="icon zan" v-if="isZan" @click="webZan">&#xe6de;</i> -->
              <i class="icon zan"  @click="aginZan">&#xe603;</i>
         </p>
         <p class="btn">
@@ -55,51 +54,30 @@ export default {
             // new comment source
             data: [
           {
-            actions: ['Reply to'],
+            actions: [''],
             author: 'Han Solo',
             avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-            content:
-              'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+            content: 'hello world',
             datetime: moment().subtract(1, 'days'),
           },
           {
-            actions: ['Reply to'],
+            actions: [''],
             author: 'Han Solo',
             avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-            content:
-              'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+            content: 'hello world',
             datetime: moment().subtract(2, 'days'),
           },
         ],
         moment,
         }
     },
-    mounted(){
-        // this.isZan = window.localStorage.isZan
-    },
     methods:{
-        /**
-         * 点赞
-         */
-        // webZan(){
-        //     this.isZan = window.localStorage.webzan
-        //     window.localStorage.setItem("isZan",true)
-        //         Toast({
-        //             message: '谢谢你喜欢我!',
-        //             icon: 'like-o'
-        //         });
-        // },
-        /**
-         * 再次点赞
-         */
         aginZan(){
-            if(window.localStorage.isZan){
+            
                 Toast({
-                    message: '我已经知道你喜欢我了',
+                    message: '我就跳着玩，别点我',
                     icon: 'like-o'
                 });
-        
-            }
         }
     }
 }
@@ -113,6 +91,17 @@ export default {
         margin-left:3.5%;
         position: relative;
         background-color: rgba(0,0,0,.1);
+        .comment{
+         .ant-list-item::after{
+           content:'';
+           width: 26px;
+           height: 14px;
+           position: relative;
+           top:-50px;
+           right: 10px;
+           background-image: url('../assets/img/new.gif');
+         }
+        }
         &::after{
             content:'';
             width: 100%;

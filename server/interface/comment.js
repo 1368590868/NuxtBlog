@@ -33,21 +33,19 @@ router.post('/api/addComment', async (ctx) => {
   const addComment = new commentModel(body)
   await addComment.save()
   // // 邮件发送
-  sendMail(body.email, '很高兴收到你的评论', `<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
-    
-        　<tr>
-            　　<td> <h2>${body.username},很高兴收到你的评论：</h2> </td>
-            　</tr>
-    
-        　<tr>
-            　　<td style='font-size:16px'> ${body.comment} </td>
-            　</tr>
-    
-        　<tr>
-            　　<td> <a href='https://irlin.cn/article/${body.article}'>点击查看更多评论</a> </td>
-            　</tr>
-    
-    </table>`)
+  sendMail(body.email, '很高兴收到你的评论', `
+  <div style="padding-left:10vw;padding-right: 10vw;padding-top: 10vh;">
+        <div style="padding:30px;border-radius: 8px;box-shadow: 0 0 10px #ccc;">
+            <span>亲爱的${body.username}，很高兴收到你的评论：</span>
+            <p
+                style="text-decoration:none; box-sizing:border-box;font-weight:bold;min-height: 35px;color: #555;width:100%;overflow: hidden;">
+                <span style="float: left;width: 60px">内容：</span>
+                <span>${body.comment}</span>
+            </p>
+            <p><a href='https://irlin.cn/article/${body.article}'>点击查看更多评论</a></p>
+            <p style="color:#0181da;margin-bottom:0;"><b>温馨提示</b>：本邮件由系统自动发出，请勿直接回复！</p>
+        </div>
+    </div> `)
   ctx.body = {
     result:'success'
   }

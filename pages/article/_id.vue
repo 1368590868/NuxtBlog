@@ -29,7 +29,7 @@
           :dataSource="commentList"
         >
           <a-list-item slot="renderItem" slot-scope="comment">
-            <a-comment :author="comment.username" avatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png">
+            <a-comment :author="comment.username" :avatar="comment.header">
               <p slot="content">{{comment.comment}}</p>
               <a-tooltip slot="datetime" :title="comment.createAt">
                 <span>{{comment.fromNow}}</span>
@@ -66,7 +66,7 @@
           label="评论"
           type="textarea"
           maxlength="300"
-          placeholder="看都看了，写点什么吧，支持少量HTML标签"
+          placeholder="看都看了，写点什么吧"
           show-word-limit
           required
           :error-message="error.content"
@@ -109,6 +109,8 @@ export default {
   data () {
     return {
       isloading: false,
+      // 头像
+      header: [require('../../assets/img/header1.jpg'),require('../../assets/img/header2.jpg'),require('../../assets/img/header3.jpg'),require('../../assets/img/header4.jpg'),require('../../assets/img/header5.jpg'),require('../../assets/img/header6.jpg'),require('../../assets/img/header7.jpg')],
       time: '',
       // 表单绑定值
       name: '',
@@ -170,10 +172,20 @@ export default {
       }).then(res => { this.isloading = false
         this.commentList = [{username: this.name,
         comment: this.content,
-        createAt:moment().format('YYYY-MM-DD'),
-        fromNow :moment().startOf('day').fromNow()
+        createAt:moment().format('YYYY-MM- , HH:mm:ss'),
+        fromNow :moment().startOf('day').fromNow(),
+        header: require('../../assets/img/header1.jpg')
         }, ...this.commentList
         ]
+        // 清空文本框提示成功
+        this.name = ''
+        this.email = ''
+        this.content = ''
+        
+        Toast({
+          icon:'success',
+          message: '评论成功'
+        })
       })
         .catch(() => this.isloading = false)
     },
@@ -227,6 +239,9 @@ export default {
     getComment(){
       return axios.get(`${process.env.BASE_URL}/api/comment/${this.$route.params.id}`).then(res => {
         this.commentList = res.data.data
+        for(let item of this.commentList){
+          item.header = this.header[Math.round(Math.random()*6)]
+        }
         }).catch(error => {console.log(error);})  
     }
   },
@@ -243,7 +258,7 @@ export default {
   },
   created () {
     // 格式化UTC日期格式
-    this.time = moment(this.articleInfo[0].createAt).format('YYYY-MM-DD, h:mm:ss')
+    this.time = moment(this.articleInfo[0].createAt).format('YYYY-MM-DD, HH:mm:ss')
   },
   mounted () {
     /**
@@ -251,8 +266,8 @@ export default {
      */
     axios.all([this.addView(),this.getComment()]).then(() => {
       for(let item of this.commentList){
-        item.createAt = moment(item.createAt).format('YYYY-MM-DD')
-        item.fromNow = moment(item.createAt).startOf('day').fromNow()
+        item.createAt = moment(item.createAt).format('YYYY-MM-DD , HH:mm:ss')
+        item.fromNow = moment(item.createAt).startOf('hour').fromNow()
         console.log(item.fromNow);
       }
       console.log(this.commentList);

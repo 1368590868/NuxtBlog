@@ -40,7 +40,9 @@
     </div>
 
     <nuxt />
-    <footer>备案号:<a href="http://www.beian.miit.gov.cn" target='_blank'>渝ICP备19017809号</a></footer>
+    <footer><p>备案号:<a href="http://www.beian.miit.gov.cn" target='_blank'>渝ICP备19017809号</a></p>
+      <p class="bq">CopyRight © 2020 - 木木 - ALL RIGHTS RESERVED</p>
+    </footer>
     <!-- 回到头部 -->
      <a-back-top style="z-index:999"/>
     </a-spin>
@@ -123,15 +125,20 @@ export default {
   }
   footer{
     width: 100%;
-    height: 50px;
+    height: 75px;
     margin-top: 75px;
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     background-color: #fff;
     font-size: 16px;
     position: relative;
     z-index: 99;
+    .bq{
+      font-size: 14px;
+      color:#a19999;
+    }
   }
 }
 @media screen and(max-width:720px){
