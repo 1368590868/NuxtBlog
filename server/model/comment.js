@@ -13,6 +13,10 @@ const commentSchema = mongoose.Schema({
   article: {
     type: String
   },
+  reply: [{
+    comment: { type: String },
+    createAt: {type: Date,default: Date.now}
+  }],
   createAt: {
     type: Date,
     default: Date.now

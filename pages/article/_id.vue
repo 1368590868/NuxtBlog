@@ -31,6 +31,18 @@
           <a-list-item slot="renderItem" slot-scope="comment">
             <a-comment :author="comment.username" :avatar="comment.header">
               <p slot="content">{{comment.comment}}</p>
+              <!-- 嵌套评论 -->
+              <a-comment v-for="(item,i) of comment.reply" :key="i">
+                <a slot="author">帅气的木木</a>
+                <a-avatar
+                  slot="avatar"
+                  :src="header[0]"
+                  alt="木木头像"
+                />
+                <p slot="content">{{item.comment}}</p>
+                <span slot='datetime'>{{item.createAt}}</span>
+              </a-comment>
+              <!-- 结束 -->
               <a-tooltip slot="datetime" :title="comment.createAt">
                 <span>{{comment.fromNow}}</span>
               </a-tooltip>
@@ -76,7 +88,6 @@
           <a-button type="primary" ghost :loading="isloading" @click="submit">提交评论</a-button>
         </div>
       </van-cell-group>
-
     </article>
   </div>
 </template>
@@ -84,7 +95,7 @@
 <script>
 import axios from 'axios';
 import moment from 'moment'
-import {Toast} from 'vant'
+import { Toast } from 'vant'
 import VTitle from '../../components/vTitle'
 export default {
   /**
@@ -93,9 +104,9 @@ export default {
   validate ({ params }) {
     return /^\S{24}$/.test(params.id)
   },
-  head(){
-    return{
-      title:this.articleInfo[0].title,
+  head () {
+    return {
+      title: this.articleInfo[0].title,
       meta: [{
         hid: this.articleInfo[0]._id,
         name: 'description',
@@ -110,7 +121,7 @@ export default {
     return {
       isloading: false,
       // 头像
-      header: [require('../../assets/img/header1.jpg'),require('../../assets/img/header2.jpg'),require('../../assets/img/header3.jpg'),require('../../assets/img/header4.jpg'),require('../../assets/img/header5.jpg'),require('../../assets/img/header6.jpg'),require('../../assets/img/header7.jpg')],
+      header: [require('../../assets/img/header1.jpg'), require('../../assets/img/header2.jpg'), require('../../assets/img/header3.jpg'), require('../../assets/img/header4.jpg'), require('../../assets/img/header5.jpg'), require('../../assets/img/header6.jpg'), require('../../assets/img/header7.jpg')],
       time: '',
       // 表单绑定值
       name: '',
@@ -139,51 +150,51 @@ export default {
      */
     submit () {
       this.isloading = true
-      if(this.name == ''){
+      if (this.name == '') {
         this.isloading = false
         return Toast({
-            message: '用户名不能为空',
-            icon: 'cross'
-          });
+          message: '用户名不能为空',
+          icon: 'cross'
+        });
       }
-      if(this.email == ''){
+      if (this.email == '') {
         this.isloading = false
         return Toast({
-            message: '邮箱不能为空',
-            icon: 'cross'
-          });
+          message: '邮箱不能为空',
+          icon: 'cross'
+        });
       }
-      if(this.content == ''){
+      if (this.content == '') {
         this.isloading = false
         return Toast({
-            message: '评论内容不能为空',
-            icon: 'cross'
-          });
+          message: '评论内容不能为空',
+          icon: 'cross'
+        });
       }
       axios({
-        method:'post',
-        url:`${process.env.BASE_URL}/api/addComment`,
-        data:{
+        method: 'post',
+        url: `${process.env.BASE_URL}/api/addComment`,
+        data: {
           username: this.name,
           email: this.email,
           comment: this.content,
           article: this.$route.params.id
         }
-      }).then(res => { this.isloading = false
-        this.commentList = [{username: this.name,
-        comment: this.content,
-        createAt:moment().format('YYYY-MM- , HH:mm:ss'),
-        fromNow :moment().startOf('day').fromNow(),
-        header: require('../../assets/img/header1.jpg')
+      }).then(res => {      this.isloading = false
+        this.commentList = [{          username: this.name,
+          comment: this.content,
+          createAt: moment().format('YYYY-MM- , HH:mm:ss'),
+          fromNow: moment().startOf('day').fromNow(),
+          header: require('../../assets/img/header1.jpg')
         }, ...this.commentList
         ]
         // 清空文本框提示成功
         this.name = ''
         this.email = ''
         this.content = ''
-        
+
         Toast({
-          icon:'success',
+          icon: 'success',
           message: '评论成功'
         })
       })
@@ -220,29 +231,29 @@ export default {
     /**
      * 阅读量
      */
-    addView(){
+    addView () {
       const id = this.$route.params.id
-    const view = this.articleInfo[0].view
-    return axios({
-      method: 'put',
-      url: '/api/addView',
-      data: {
-        id: id,
-        view: view
-      }
-    })
-      .catch(e => { console.log(e); })
+      const view = this.articleInfo[0].view
+      return axios({
+        method: 'put',
+        url: '/api/addView',
+        data: {
+          id: id,
+          view: view
+        }
+      })
+        .catch(e => { console.log(e); })
     },
     /**
      * 评论查询
      */
-    getComment(){
+    getComment () {
       return axios.get(`${process.env.BASE_URL}/api/comment/${this.$route.params.id}`).then(res => {
         this.commentList = res.data.data
-        for(let item of this.commentList){
-          item.header = this.header[Math.round(Math.random()*6)]
+        for (let item of this.commentList) {
+          item.header = this.header[Math.round(Math.random() * 6)]
         }
-        }).catch(error => {console.log(error);})  
+      }).catch(error => { console.log(error); })
     }
   },
   /**
@@ -264,8 +275,8 @@ export default {
     /**
      * [addView,comment]
      */
-    axios.all([this.addView(),this.getComment()]).then(() => {
-      for(let item of this.commentList){
+    axios.all([this.addView(), this.getComment()]).then(() => {
+      for (let item of this.commentList) {
         item.createAt = moment(item.createAt).format('YYYY-MM-DD , HH:mm:ss')
         item.fromNow = moment(item.createAt).startOf('hour').fromNow()
         console.log(item.fromNow);

@@ -51,6 +51,16 @@ router.post('/api/addComment', async (ctx) => {
   }
 })
 
+// 评论回复
+router.post('/api/addReply', async (ctx) => {
+  const body = ctx.request.body
+  const addReply = new commentModel(body)
+  addReply.save
+  ctx.body = {
+    result: 'success'
+  }
+})
+
 
 
 module.exports = router
