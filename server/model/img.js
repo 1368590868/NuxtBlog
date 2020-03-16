@@ -7,10 +7,6 @@ const imgSchema = mongoose.Schema({
   createAt: {
     type: Date,
     default: Date.now
-  },
-  lastUpdateAt: {
-    type: Date,
-    default: Date.now
   }
 })
 

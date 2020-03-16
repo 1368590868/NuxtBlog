@@ -6,6 +6,17 @@ const consola = require('consola')
 
 const router = new Router()
 
+// 首页5条评论查询
+router.get('/api/homeComment', async (ctx) => {
+  const result = await commentModel.find({}).sort({
+    _id: -1
+  }).limit(5)
+  ctx.body = {
+    result: 'success',
+    data: result
+  }
+})
+
 // 全部评论查询
 router.get('/api/allComment', async (ctx) => {
   const result = await commentModel.find({article: 'comment'}).sort({_id:-1})
@@ -52,12 +63,33 @@ router.post('/api/addComment', async (ctx) => {
 })
 
 // 评论回复
-router.post('/api/addReply', async (ctx) => {
+router.put('/api/addReply', async (ctx) => {
   const body = ctx.request.body
-  const addReply = new commentModel(body)
-  addReply.save
+  await commentModel.updateOne({ _id: body.id }, { $push: { reply: { comment: body.comment } } })
+  // // 邮件发送
+  sendMail(body.email, '您在木木的博客有了新回复', `
+  <div style="padding-left:10vw;padding-right: 10vw;padding-top: 10vh;">
+        <div style="padding:30px;border-radius: 8px;box-shadow: 0 0 10px #ccc;">
+            <span>亲爱的${body.username},木木给您的回复如下：</span>
+            <p
+                style="text-decoration:none; box-sizing:border-box;font-weight:bold;min-height: 35px;color: #555;width:100%;overflow: hidden;">
+                <span style="float: left;width: 60px">内容：</span>
+                <span>${body.comment}</span>
+            </p>
+            <p style="color:#0181da;margin-bottom:0;"><b>温馨提示</b>：本邮件由系统自动发出，请勿直接回复！</p>
+        </div>
+    </div> `)
   ctx.body = {
     result: 'success'
+  }
+})
+
+// 删除评论
+router.delete('/api/deleteReply/:id', async (ctx) => {
+  const id = ctx.params.id
+  await commentModel.remove({ _id: id })
+  ctx.body = {
+    result : 'success'
   }
 })
 

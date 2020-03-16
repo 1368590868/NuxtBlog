@@ -24,23 +24,23 @@
       <!-- 最新评论 -->
       <div class="comment">
            <a-list
-    class="comment-list"
-    :header="`${data.length} replies`"
-    itemLayout="horizontal"
-    :dataSource="data"
-  >
-    <a-list-item slot="renderItem" slot-scope="item">
-      <a-comment :author="item.author" :avatar="item.avatar">
-        <template slot="actions">
-          <span v-for="(action,i) in item.actions" :key="i">{{action}}</span>
-        </template>
-        <p slot="content">{{item.content}}</p>
-        <a-tooltip slot="datetime" :title="item.datetime.format('YYYY-MM-DD HH:mm:ss')">
-          <span>{{item.datetime.fromNow()}}</span>
-        </a-tooltip>
-      </a-comment>
-    </a-list-item>
-  </a-list>
+      class="comment-list"
+      :header="`最新${commentList.length} 条评论`"
+      itemLayout="horizontal"
+      :dataSource="commentList"
+    >
+      <a-list-item slot="renderItem" slot-scope="comment">
+        <a-comment
+          :author="comment.username"
+          :avatar="comment.header"
+        >
+          <p slot="content">{{comment.comment}}</p>
+          <a-tooltip slot="datetime" :title="comment.createAt">
+            <span>{{comment.fromNow}}</span>
+          </a-tooltip>
+        </a-comment>
+      </a-list-item>
+    </a-list>
       </div>
   </div>
 </template>
@@ -48,28 +48,16 @@
 <script>
 import {Toast} from 'vant'
 import moment from 'moment'
+import axios from 'axios';
 export default {
     data(){
         return{
-            // new comment source
-            data: [
-          {
-            actions: [''],
-            author: 'Han Solo',
-            avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-            content: 'hello world',
-            datetime: moment().subtract(1, 'days'),
-          },
-          {
-            actions: [''],
-            author: 'Han Solo',
-            avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-            content: 'hello world',
-            datetime: moment().subtract(2, 'days'),
-          },
-        ],
-        moment,
+      header: [require('../assets/img/header.jpg'),require('../assets/img/header2.jpg'),require('../assets/img/header3.jpg'),require('../assets/img/header4.jpg'),require('../assets/img/header5.jpg'),require('../assets/img/header6.jpg'),require('../assets/img/header7.jpg')],
+          commentList:'',
         }
+    },
+    mounted(){
+      this.getComment()
     },
     methods:{
         aginZan(){
@@ -78,7 +66,20 @@ export default {
                     message: '我就跳着玩，别点我',
                     icon: 'like-o'
                 });
+        },
+        /**
+     * 评论查询
+     */
+    getComment () {
+      return axios.get(`${process.env.BASE_URL}/api/homeComment`).then(res => {
+        this.commentList = res.data.data
+        for (let item of this.commentList) {
+          item.createAt = moment(item.createAt).format('YYYY-MM-DD , HH:mm:ss')
+          item.fromNow = moment(item.createAt).startOf('hour').fromNow()
+          item.header = this.header[Math.round(Math.random() * 6)]
         }
+      }).catch(error => { console.log(error); })
+    }
     }
 }
 </script>
@@ -97,7 +98,7 @@ export default {
            width: 26px;
            height: 14px;
            position: relative;
-           top:-50px;
+           top:-30px;
            right: 10px;
            background-image: url('../assets/img/new.gif');
          }
