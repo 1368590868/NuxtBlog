@@ -74,7 +74,6 @@ export default {
             Authorization: `token ${token}`
           }
         }).then((res) => {
-          console.log(res.data);
           this.loading = false
           Toast({
             message: '登陆成功',

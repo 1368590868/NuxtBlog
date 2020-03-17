@@ -264,7 +264,6 @@ export default {
       method: 'get',
       url: `${env.BASE_URL}/api/article/${params.id}`
     })
-    console.log(data.data.data);
     return { articleInfo: data.data.data }
   },
   created () {
@@ -279,9 +278,7 @@ export default {
       for (let item of this.commentList) {
         item.createAt = moment(item.createAt).format('YYYY-MM-DD , HH:mm:ss')
         item.fromNow = moment(item.createAt).startOf('hour').fromNow()
-        console.log(item.fromNow);
       }
-      console.log(this.commentList);
     })
   }
 }
