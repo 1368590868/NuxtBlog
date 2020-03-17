@@ -13,6 +13,7 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'keywords', content: '冉林的博客,冉林的小站,冉林,木木的小站' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'applicable-device', content: 'pc,mobile'},
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
@@ -68,10 +69,13 @@ module.exports = {
   ** Build configuration
   */
   build: {
+     build: {
+     vendor: ['axios']
+  },
     /*
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
   }
 }

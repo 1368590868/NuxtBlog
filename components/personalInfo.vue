@@ -3,7 +3,7 @@
       <div class="per-content">
           <!-- 个人头像 -->
           <br>
-         <img src="http://cdn.irlin.cn/header.PNG" height="80px">
+         <img src="http://cdn.irlin.cn/header.png" height="80px">
          <p class="name">木木</p>
          <p class="desc">初级前端CV(复制粘贴)工程师</p>
          <p class="github">
@@ -18,14 +18,14 @@
         </p>
         <p class="btn">
             <i class="icon ">&#xe61a;</i>
-            <span>&nbsp;留言数：45</span>
+            <span>&nbsp;最新留言：5</span>
         </p>
       </div>
       <!-- 最新评论 -->
       <div class="comment">
            <a-list
       class="comment-list"
-      :header="`最新${commentList.length} 条评论`"
+      header=" "
       itemLayout="horizontal"
       :dataSource="commentList"
     >

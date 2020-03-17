@@ -8,12 +8,12 @@
       @click="goContent(item._id)"
     >
       <!-- 文章图片 -->
-      <div class="img" style="width:140px;height:108px">
+      <div class="img" style="width:140px;height:125px">
         <img :src="item.imgurl" :alt="item.title" height="100%" width="100%" />
       </div>
       <!-- 内容描述 -->
       <div class="aritcle-content">
-        <p class="title">{{item.title}}</p>
+        <p class="title van-multi-ellipsis--l2">{{item.title}}</p>
         <!-- 时间、留言、点赞 -->
         <p class="title-fu">
           <span class="time">
@@ -81,7 +81,7 @@ export default {
   }
   .aritcle {
     width: 100%;
-    height: 108px;
+    height: 125px;
     position: relative;
     display: flex;
     flex-flow: row nowrap;
@@ -111,7 +111,7 @@ export default {
       overflow: hidden;
       .title {
         color: #555555;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: bolder;
         margin-top: 11px;
         text-align: center;
@@ -145,7 +145,7 @@ export default {
         padding-right: 5px;
       }
       .img {
-        margin-top: 20px;
+        margin-top: 10px;
         margin-left: 10px;
         img {
           border-radius: 0;
@@ -153,7 +153,7 @@ export default {
       }
       .aritcle-content {
         .title {
-          font-size: 18px;
+          font-size: 16px;
         }
         .title-fu {
           .feedback,
