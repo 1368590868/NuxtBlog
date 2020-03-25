@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-     <!-- 全屏loading -->
-    <a-spin tip='页面加载中' :spinning="loading">
     <!-- 头部 -->
     <header  class="header-wrap">
       <div class="header-bg">
@@ -45,7 +43,6 @@
     </footer>
     <!-- 回到头部 -->
      <a-back-top style="z-index:999"/>
-    </a-spin>
   </div>
 </template>
 <script>
@@ -54,11 +51,6 @@ import AllHeader from '../components/Header'
 export default {
   components:{
     AllHeader
-  },
-  data(){
-    return{
-      loading: true
-    }
   },
   methods:{
     /**
@@ -79,10 +71,6 @@ export default {
   icon: 'like-o'
 });
       }
-  },
-  mounted(){
-    this.loading = false
-  
   }
 }
 </script>

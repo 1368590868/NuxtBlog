@@ -16,7 +16,7 @@
   <!-- 个人信息title -->
   <v-title class="per-info-title" :initTitle='initTitle'></v-title>
    <!-- 个人信息 -->
-   <personal-info></personal-info>
+   <personal-info :commentList='commentList'></personal-info>
    </div>
    
   </div>
@@ -66,7 +66,9 @@ export default {
       method : 'get',
       url : `${env.BASE_URL}/api/homeArticle`
     })
-    return {aritcle:data.data}
+    // 获取首页5条评论
+    let homeComment = await $axios.get(`${env.BASE_URL}/api/homeComment`)
+    return {aritcle:data.data,commentList:homeComment.data.data}
   }
 
 }

@@ -2,7 +2,6 @@ const Router = require('koa-router');
 const commentModel = require('../model/comment')
 // 邮箱发送
 const {sendMail} = require('./sendmail')
-const consola = require('consola')
 
 const router = new Router()
 
@@ -30,7 +29,6 @@ router.get('/api/allComment', async (ctx) => {
 router.get('/api/comment/:id', async (ctx, next) => {
   const id = ctx.params.id
   const result = await commentModel.find({article:id}).sort({_id:-1})
-  consola.info('result', result)
   ctx.body = {
     result: 'success',
     data: result
@@ -40,7 +38,6 @@ router.get('/api/comment/:id', async (ctx, next) => {
 // 提交评论
 router.post('/api/addComment', async (ctx) => {
   const body = ctx.request.body
-  consola.info(body)
   const addComment = new commentModel(body)
   await addComment.save()
   // // 邮件发送

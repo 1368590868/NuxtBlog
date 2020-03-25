@@ -50,14 +50,20 @@ import {Toast} from 'vant'
 import moment from 'moment'
 import axios from 'axios';
 export default {
+  props:{
+    commentList:Array
+  },
     data(){
         return{
       header: [require('../assets/img/header.jpg'),require('../assets/img/header2.jpg'),require('../assets/img/header3.jpg'),require('../assets/img/header4.jpg'),require('../assets/img/header5.jpg'),require('../assets/img/header6.jpg'),require('../assets/img/header7.jpg')],
-          commentList:'',
         }
     },
-    mounted(){
-      this.getComment()
+    created(){
+      for (let item of this.commentList) {
+          item.createAt = moment(item.createAt).format('YYYY-MM-DD , HH:mm:ss')
+          item.fromNow = moment(item.createAt).startOf('hour').fromNow()
+          item.header = this.header[Math.round(Math.random() * 6)]
+        }
     },
     methods:{
         aginZan(){
@@ -67,19 +73,6 @@ export default {
                     icon: 'like-o'
                 });
         },
-        /**
-     * 评论查询
-     */
-    getComment () {
-      return axios.get(`${process.env.BASE_URL}/api/homeComment`).then(res => {
-        this.commentList = res.data.data
-        for (let item of this.commentList) {
-          item.createAt = moment(item.createAt).format('YYYY-MM-DD , HH:mm:ss')
-          item.fromNow = moment(item.createAt).startOf('hour').fromNow()
-          item.header = this.header[Math.round(Math.random() * 6)]
-        }
-      }).catch(error => { console.log(error); })
-    }
     }
 }
 </script>
