@@ -1,6 +1,5 @@
 const Router = require('koa-router');
 const articleModel = require('../model/article')
-const consola = require('consola')
 
 const router = new Router()
 
@@ -72,7 +71,6 @@ router.put('/api/addView', async (ctx) => {
 // 添加文章
 router.post('/api/addArticle', async (ctx) => {
   const body = ctx.request.body
-  consola.info(body)
   const article = new articleModel(body);
   await article.save()
   ctx.body = {
