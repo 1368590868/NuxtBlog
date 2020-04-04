@@ -15,7 +15,7 @@
       </div>
     </header>
     <!-- 全局背景图片粒子效果 -->
-    <div class="bgc">
+    <div class="bgc" v-if="bgImg">
       <client-only placeholder="背景图片加载中...">
         <vue-particles
           color="#dedede"
@@ -51,6 +51,17 @@ import AllHeader from '../components/Header'
 export default {
   components:{
     AllHeader
+  },
+  data(){
+    return{
+      bgImg:false
+    }
+  },
+  mounted(){
+    // 打开浏览器判断，pc端加载粒子效果
+    if(window.innerWidth > 720){
+      this.bgImg = true
+    }
   },
   methods:{
     /**
